@@ -92,21 +92,31 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  NinjaPrimaryButton(
-                    onPressed: () {},
-                    padding: const EdgeInsets.only(top: 16, bottom: 18),
-                    expanded: true,
-                    child: const NinjaText.bodyLarge('Начать', fontWeight: 700),
+                  Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        NinjaPrimaryButton(
+                          onPressed: () {},
+                          padding: const EdgeInsets.only(top: 16, bottom: 18),
+                          expanded: true,
+                          child: const NinjaText.bodyLarge('Начать',
+                              fontWeight: 700),
+                        ),
+                        const SizedBox(height: 24),
+                        NinjaOutlinedButton(
+                          expanded: true,
+                          child: const NinjaText.bodyLarge('Выбрать',
+                              fontWeight: 700),
+                          onPressed: () {},
+                        ),
+                        const SizedBox(height: 24),
+                        NinjaTextButton(
+                            text: '+ Добавить комментарии', onPressed: () {}),
+                      ],
+                    ),
                   ),
-                  NinjaOutlinedButton(
-                    expanded: true,
-                    child:
-                        const NinjaText.bodyLarge('Выбрать', fontWeight: 700),
-                    onPressed: () {},
-                  ),
-                  NinjaTextButton(
-                      text: '+ Добавить комментарии', onPressed: () {}),
                 ],
               ),
             ),
