@@ -6,7 +6,7 @@ class ConstantData {
   ConstantData({
     this.containerRadius = 30,
     this.cardRadius = 10,
-    this.buttonRadius = 16,
+    this.buttonRadius = 13,
   });
 }
 
