@@ -5,8 +5,6 @@ enum AppThemeType { light, dark }
 class AppTheme {
   static AppThemeType defaultThemeType = AppThemeType.light;
 
-  static TextDirection textDirection = TextDirection.ltr;
-
   static ThemeData theme = AppTheme.getThemeFromThemeMode();
 
   static ThemeData lightTheme = ThemeData(
@@ -30,13 +28,18 @@ class AppTheme {
     cardColor: const Color(0xfff0f0f0),
 
     /// Colorscheme
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: const Color(0xFFFFFB1F),
-      onPrimary: const Color(0xFF232323),
-      secondary: const Color(0xFF2563EB),
-      onSecondary: const Color(0xFFFFFFFF),
-      error: const Color(0xFFF75555),
+    colorScheme: const ColorScheme(
       brightness: Brightness.light,
+      primary: Color(0xFFFFFB1F),
+      onPrimary: Color(0xFF232323),
+      secondary: Color(0xFF2563EB),
+      onSecondary: Color(0xFFFFFFFF),
+      error: Color(0xFFF75555),
+      background: Color(0xffffffff),
+      onBackground: Color(0xFF232323),
+      onError: Color(0xFFFFFFFF),
+      onSurface: Color(0xFF232323),
+      surface: Color(0xffffffff),
     ),
 
     /// Floating Action Theme

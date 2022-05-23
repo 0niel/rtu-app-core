@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'app_theme.dart';
 
-enum TextType {
+enum NinjaTextType {
   h1,
   h2,
   h3,
@@ -11,7 +11,7 @@ enum TextType {
   h5,
   h6,
   bodyXLarge,
-  bydyLarge,
+  bodyLarge,
   bodyMedium,
   bodySmall,
   bodyXSmall,
@@ -32,32 +32,32 @@ class NinjaTextStyle {
     900: FontWeight.w900,
   };
 
-  static Map<TextType, double> _defaultTextSize = {
-    TextType.h1: 48,
-    TextType.h2: 40,
-    TextType.h3: 36,
-    TextType.h4: 24,
-    TextType.h5: 20,
-    TextType.h6: 18,
-    TextType.bodyXLarge: 18,
-    TextType.bydyLarge: 16,
-    TextType.bodyMedium: 14,
-    TextType.bodySmall: 12,
-    TextType.bodyXSmall: 10,
+  static Map<NinjaTextType, double> _defaultTextSize = {
+    NinjaTextType.h1: 48,
+    NinjaTextType.h2: 40,
+    NinjaTextType.h3: 36,
+    NinjaTextType.h4: 24,
+    NinjaTextType.h5: 20,
+    NinjaTextType.h6: 18,
+    NinjaTextType.bodyXLarge: 18,
+    NinjaTextType.bodyLarge: 16,
+    NinjaTextType.bodyMedium: 14,
+    NinjaTextType.bodySmall: 12,
+    NinjaTextType.bodyXSmall: 10,
   };
 
-  static Map<TextType, int> _defaultTextFontWeight = {
-    TextType.h1: 700,
-    TextType.h2: 700,
-    TextType.h3: 700,
-    TextType.h4: 600,
-    TextType.h5: 700,
-    TextType.h6: 700,
-    TextType.bodyXLarge: 400,
-    TextType.bydyLarge: 400,
-    TextType.bodyMedium: 400,
-    TextType.bodySmall: 400,
-    TextType.bodyXSmall: 400,
+  static Map<NinjaTextType, int> _defaultTextFontWeight = {
+    NinjaTextType.h1: 700,
+    NinjaTextType.h2: 700,
+    NinjaTextType.h3: 700,
+    NinjaTextType.h4: 600,
+    NinjaTextType.h5: 700,
+    NinjaTextType.h6: 700,
+    NinjaTextType.bodyXLarge: 400,
+    NinjaTextType.bodyLarge: 400,
+    NinjaTextType.bodyMedium: 400,
+    NinjaTextType.bodySmall: 400,
+    NinjaTextType.bodyXSmall: 400,
   };
 
   static TextStyle getStyle({
@@ -108,7 +108,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.h1],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.h1],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -130,7 +130,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.h2],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.h2],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -152,7 +152,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.h3],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.h3],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -174,7 +174,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.h4],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.h4],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -196,7 +196,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.h5],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.h5],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -218,7 +218,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.h6],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.h6],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -240,7 +240,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.bodyXLarge],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.bodyXLarge],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -250,7 +250,7 @@ class NinjaTextStyle {
     );
   }
 
-  static TextStyle bydyLarge({
+  static TextStyle bodyLarge({
     TextStyle? otherTextStyle,
     int fontWeight = 400,
     double? letterSpacing,
@@ -262,7 +262,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.bydyLarge],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.bodyLarge],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -284,7 +284,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.bodyMedium],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.bodyMedium],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -306,7 +306,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.bodySmall],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.bodySmall],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0.1,
@@ -328,7 +328,7 @@ class NinjaTextStyle {
   }) {
     return getStyle(
       otherTextStyle: otherTextStyle,
-      fontSize: fontSize ?? _defaultTextSize[TextType.bodyXSmall],
+      fontSize: fontSize ?? _defaultTextSize[NinjaTextType.bodyXSmall],
       color: color,
       height: height,
       letterSpacing: letterSpacing ?? 0,
@@ -346,13 +346,15 @@ class NinjaTextStyle {
     NinjaTextStyle._defaultFontWeight = defaultFontWeight;
   }
 
-  static void changeDefaultTextSize(Map<TextType, double> defaultTextSize) {
+  static void changeDefaultTextSize(
+      Map<NinjaTextType, double> defaultTextSize) {
     NinjaTextStyle._defaultTextSize = defaultTextSize;
   }
 
-  static Map<TextType, double> get defaultTextSize => _defaultTextSize;
+  static Map<NinjaTextType, double> get defaultTextSize => _defaultTextSize;
 
-  static Map<TextType, int> get defaultTextFontWeight => _defaultTextFontWeight;
+  static Map<NinjaTextType, int> get defaultTextFontWeight =>
+      _defaultTextFontWeight;
 
   static Map<int, FontWeight> get defaultFontWeight => _defaultFontWeight;
 
@@ -372,31 +374,31 @@ class NinjaTextStyle {
     };
 
     _defaultTextSize = {
-      TextType.h1: 48,
-      TextType.h2: 40,
-      TextType.h3: 36,
-      TextType.h4: 24,
-      TextType.h5: 20,
-      TextType.h6: 18,
-      TextType.bodyXLarge: 18,
-      TextType.bydyLarge: 16,
-      TextType.bodyMedium: 14,
-      TextType.bodySmall: 12,
-      TextType.bodyXSmall: 10,
+      NinjaTextType.h1: 48,
+      NinjaTextType.h2: 40,
+      NinjaTextType.h3: 36,
+      NinjaTextType.h4: 24,
+      NinjaTextType.h5: 20,
+      NinjaTextType.h6: 18,
+      NinjaTextType.bodyXLarge: 18,
+      NinjaTextType.bodyLarge: 16,
+      NinjaTextType.bodyMedium: 14,
+      NinjaTextType.bodySmall: 12,
+      NinjaTextType.bodyXSmall: 10,
     };
 
     _defaultTextFontWeight = {
-      TextType.h1: 700,
-      TextType.h2: 700,
-      TextType.h3: 700,
-      TextType.h4: 600,
-      TextType.h5: 700,
-      TextType.h6: 700,
-      TextType.bodyXLarge: 400,
-      TextType.bydyLarge: 400,
-      TextType.bodyMedium: 400,
-      TextType.bodySmall: 400,
-      TextType.bodyXSmall: 400,
+      NinjaTextType.h1: 700,
+      NinjaTextType.h2: 700,
+      NinjaTextType.h3: 700,
+      NinjaTextType.h4: 600,
+      NinjaTextType.h5: 700,
+      NinjaTextType.h6: 700,
+      NinjaTextType.bodyXLarge: 400,
+      NinjaTextType.bodyLarge: 400,
+      NinjaTextType.bodyMedium: 400,
+      NinjaTextType.bodySmall: 400,
+      NinjaTextType.bodyXSmall: 400,
     };
   }
 }
