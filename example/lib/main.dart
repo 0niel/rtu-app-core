@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
+import 'package:unicons/unicons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +30,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<String> categoryList = [
+    "#Праздники",
+    "#Минобрнауки РФ",
+    "#Ректор",
+    "#Абитуриентам",
+    "#Студентам",
+    "#ИИТ",
+    "#ИКБ",
+    "#Сотрудникам",
+    "#ИПИТИП",
+    "#Спорт",
+    "#Колледж",
+    "#Оброзование",
+    "#ИМО",
+    "#ИИИ",
+    "#ИТХТ им. М.В. Ломоносова",
+    "#Волонтерство",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,13 +128,33 @@ class _MyHomePageState extends State<MyHomePage> {
                         const SizedBox(height: 24),
                         NinjaOutlinedButton(
                           expanded: true,
-                          child: const NinjaText.bodyLarge('Выбрать',
-                              fontWeight: 700),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.string(
+                                  '<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.06061 5.97461H10V3.96192H6.06061V0H3.92992V3.96192H0V5.97461H3.92992V10H6.06061V5.97461Z" fill="#2563EB"/></svg>',
+                                  width: 10,
+                                  height: 10,
+                                ),
+                                const SizedBox(width: 4),
+                                NinjaText.bodyMedium(
+                                  'Добавить бронь',
+                                  fontWeight: 600,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                              ]),
                           onPressed: () {},
                         ),
                         const SizedBox(height: 24),
                         NinjaTextButton(
                             text: '+ Добавить комментарии', onPressed: () {}),
+                        const SizedBox(height: 24),
+                        NinjaChoiceChip(
+                            onPressed: (selected) {
+                              print(selected);
+                            },
+                            choicesList: categoryList)
                       ],
                     ),
                   ),
