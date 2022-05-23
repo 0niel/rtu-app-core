@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
-import 'package:unicons/unicons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -160,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             print(selected);
                           },
                           oneChoice: true,
-                          choicesList: ['Муж', 'Жен'],
+                          choicesList: const ['Муж', 'Жен'],
                         ),
                       ],
                     ),
