@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
-import 'package:rtu_app_core/themes/text_style.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,8 +7,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,19 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,26 +35,119 @@ class _MyHomePageState extends State<MyHomePage> {
         title:
             Text('Предмет', style: NinjaTextStyle.bodyMedium(fontWeight: 500)),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: NinjaTextStyle.bydyLarge(),
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewportConstraints) {
+        return SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: viewportConstraints.maxHeight,
             ),
-            Text(
-              '$_counter',
-              style: NinjaTextStyle.h1(),
+            child: IntrinsicHeight(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: NinjaText.h2('Font Used'),
+                  ),
+                  SizedBox(
+                    height: 130,
+                    child: ListView(
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      children: const [
+                        FontCard(
+                          largeIcon: NinjaText.h1("Aa"),
+                          title: NinjaText.bodyXLarge("SF Pro Display",
+                              fontWeight: 700),
+                          subtitle: NinjaText.bodyLarge("Bold",
+                              fontWeight: 700, color: Color(0xFF98999A)),
+                        ),
+                        SizedBox(width: 32),
+                        FontCard(
+                          largeIcon: NinjaText.h1("Aa", fontWeight: 600),
+                          title: NinjaText.bodyXLarge("SF Pro Display",
+                              fontWeight: 600),
+                          subtitle: NinjaText.bodyLarge("Semibold",
+                              fontWeight: 600, color: Color(0xFF98999A)),
+                        ),
+                        SizedBox(width: 32),
+                        FontCard(
+                          largeIcon: NinjaText.h1("Aa"),
+                          title: NinjaText.bodyXLarge("SF Pro Display",
+                              fontWeight: 500),
+                          subtitle: NinjaText.bodyLarge("Medium",
+                              fontWeight: 500, color: Color(0xFF98999A)),
+                        ),
+                        SizedBox(width: 32),
+                        FontCard(
+                          largeIcon: NinjaText.h1("Aa"),
+                          title: NinjaText.bodyXLarge("SF Pro Display",
+                              fontWeight: 400),
+                          subtitle: NinjaText.bodyLarge("Regular",
+                              fontWeight: 400, color: Color(0xFF98999A)),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+class FontCard extends StatelessWidget {
+  const FontCard(
+      {Key? key,
+      required this.largeIcon,
+      required this.title,
+      required this.subtitle})
+      : super(key: key);
+
+  final NinjaText largeIcon;
+  final NinjaText title;
+  final NinjaText subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 272.5,
+      height: 130,
+      decoration: BoxDecoration(
+          color: const Color(0xFFF8F8F8),
+          borderRadius: BorderRadius.circular(20)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 19),
+        child: Row(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              width: 92,
+              height: 92,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
+              child: largeIcon,
+            ),
+            const SizedBox(width: 20),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                title,
+                const SizedBox(height: 8),
+                subtitle,
+              ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
