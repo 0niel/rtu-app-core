@@ -9,6 +9,7 @@ class NinjaOutlinedButton extends StatelessWidget {
     required this.onPressed,
     this.borderColor,
     this.padding,
+    this.borderRadius = 6,
     this.expanded = false,
   }) : super(key: key);
 
@@ -17,6 +18,7 @@ class NinjaOutlinedButton extends StatelessWidget {
   final bool expanded;
   final Color? borderColor;
   final EdgeInsets? padding;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class NinjaOutlinedButton extends StatelessWidget {
       splashColor: borderColor != null
           ? borderColor!.withAlpha(15)
           : Theme.of(context).colorScheme.secondary.withAlpha(15),
-      borderRadiusAll: 6,
+      borderRadiusAll: borderRadius,
       borderColor: borderColor ?? Theme.of(context).colorScheme.secondary,
       elevation: 0,
       expanded: expanded,
