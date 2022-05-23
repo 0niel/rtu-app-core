@@ -104,7 +104,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child:
                         const NinjaText.bodyLarge('Выбрать', fontWeight: 700),
                     onPressed: () {},
-                  )
+                  ),
+                  NinjaTextButton(
+                      text: '+ Добавить комментарии', onPressed: () {}),
                 ],
               ),
             ),
