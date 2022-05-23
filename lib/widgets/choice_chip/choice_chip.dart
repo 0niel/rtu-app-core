@@ -8,10 +8,12 @@ class NinjaChoiceChip extends StatefulWidget {
     Key? key,
     required this.onPressed,
     required this.choicesList,
+    this.oneChoice = false,
   }) : super(key: key);
 
   final Function(List<String> selectedChoices) onPressed;
   final List<String> choicesList;
+  final bool oneChoice;
 
   @override
   State<NinjaChoiceChip> createState() => _NinjaChoiceChipState();
@@ -54,9 +56,16 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
           selected: selectedChoices.contains(item),
           onSelected: (selected) {
             setState(() {
-              selectedChoices.contains(item)
-                  ? selectedChoices.remove(item)
-                  : selectedChoices.add(item);
+              if (widget.oneChoice) {
+                if (selectedChoices.contains(item) == false) {
+                  selectedChoices.clear();
+                  selectedChoices.add(item);
+                }
+              } else {
+                selectedChoices.contains(item)
+                    ? selectedChoices.remove(item)
+                    : selectedChoices.add(item);
+              }
             });
             widget.onPressed(selectedChoices);
           },

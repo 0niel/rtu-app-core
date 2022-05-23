@@ -149,12 +149,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         const SizedBox(height: 24),
                         NinjaTextButton(
                             text: '+ Добавить комментарии', onPressed: () {}),
-                        const SizedBox(height: 24),
                         NinjaChoiceChip(
-                            onPressed: (selected) {
-                              print(selected);
-                            },
-                            choicesList: categoryList)
+                          onPressed: (selected) {
+                            print(selected);
+                          },
+                          choicesList: categoryList,
+                        ),
+                        NinjaChoiceChip(
+                          onPressed: (selected) {
+                            print(selected);
+                          },
+                          oneChoice: true,
+                          choicesList: ['Муж', 'Жен'],
+                        ),
                       ],
                     ),
                   ),
