@@ -70,7 +70,7 @@ class NinjaTextStyle {
     double wordSpacing = 0,
     double? fontSize,
   }) {
-    color ??= AppTheme.getThemeFromThemeMode().colorScheme.onBackground;
+    color ??= AppTheme.theme.colorScheme.onBackground;
 
     if (otherTextStyle != null) {
       return otherTextStyle.copyWith(
@@ -357,6 +357,8 @@ class NinjaTextStyle {
       _defaultTextFontWeight;
 
   static Map<int, FontWeight> get defaultFontWeight => _defaultFontWeight;
+
+  static String get fontFamily => _fontFamily;
 
   static resetFontStyles() {
     _fontFamily = 'SF Pro Display';

@@ -32,8 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Предмет', style: NinjaTextStyle.bodyMedium(fontWeight: 500)),
+        title: const Text('Предмет'),
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints viewportConstraints) {
@@ -93,6 +92,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 24),
+                  NinjaPrimaryButton(
+                    onPressed: () {},
+                    padding: const EdgeInsets.only(top: 16, bottom: 18),
+                    expanded: true,
+                    child: const NinjaText.bodyLarge('Начать', fontWeight: 700),
+                  ),
+                  NinjaOutlinedButton(
+                    expanded: true,
+                    child:
+                        const NinjaText.bodyLarge('Выбрать', fontWeight: 700),
+                    onPressed: () {},
+                  )
                 ],
               ),
             ),

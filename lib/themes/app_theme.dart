@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'text_style.dart';
+
 enum AppThemeType { light, dark }
 
 class AppTheme {
@@ -18,10 +20,16 @@ class AppTheme {
     canvasColor: Colors.transparent,
 
     /// AppBar Theme
-    appBarTheme: const AppBarTheme(
-        backgroundColor: Color(0xffffffff),
-        iconTheme: IconThemeData(color: Color(0xFF0F172A)),
-        actionsIconTheme: IconThemeData(color: Color(0xFF0F172A))),
+    appBarTheme: AppBarTheme(
+        elevation: 0,
+        titleTextStyle: TextStyle(
+            color: const Color(0xFF232323),
+            fontWeight: FontWeight.w500,
+            fontSize: NinjaTextStyle.defaultTextSize[NinjaTextType.bodyMedium],
+            fontFamily: NinjaTextStyle.fontFamily),
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
+        actionsIconTheme: const IconThemeData(color: Color(0xFF0F172A))),
 
     /// Card Theme
     cardTheme: const CardTheme(color: Color(0xfff0f0f0)),
