@@ -36,8 +36,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   unicons: any
   flutter_svg: ^1.1.0
+  flutter_platform_widgets: ^1.20.0
   rtu_app_core:
     path: ../
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
