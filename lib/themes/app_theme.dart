@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'text_style.dart';
@@ -21,15 +22,17 @@ class AppTheme {
 
     /// AppBar Theme
     appBarTheme: AppBarTheme(
-        elevation: 0,
-        titleTextStyle: TextStyle(
-            color: const Color(0xFF232323),
-            fontWeight: FontWeight.w500,
-            fontSize: NinjaTextStyle.defaultTextSize[NinjaTextType.bodyMedium],
-            fontFamily: NinjaTextStyle.fontFamily),
-        backgroundColor: Colors.transparent,
-        iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
-        actionsIconTheme: const IconThemeData(color: Color(0xFF0F172A))),
+      elevation: 0,
+      shadowColor: const Color.fromRGBO(0, 0, 0, 0.13),
+      backgroundColor: Colors.white,
+      titleTextStyle: TextStyle(
+          color: const Color(0xFF232323),
+          fontWeight: FontWeight.w500,
+          fontSize: NinjaTextStyle.defaultTextSize[NinjaTextType.bodyMedium],
+          fontFamily: NinjaTextStyle.fontFamily),
+      iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
+      actionsIconTheme: const IconThemeData(color: Color(0xFF0F172A)),
+    ),
 
     /// Card Theme
     cardTheme: const CardTheme(color: Color(0xfff0f0f0)),
@@ -260,6 +263,12 @@ class AppTheme {
     highlightColor: Colors.white.withAlpha(28),
     errorColor: Colors.orange,
     splashColor: Colors.white.withAlpha(56),
+  );
+
+  static CupertinoThemeData cupertinoLightTheme = const CupertinoThemeData(
+    brightness: Brightness.light,
+    primaryColor: Color(0xFFFFFB1F),
+    scaffoldBackgroundColor: Colors.white,
   );
 
   static ThemeData getThemeFromThemeMode({AppThemeType? themeType}) {

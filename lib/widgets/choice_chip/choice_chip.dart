@@ -29,46 +29,49 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
     for (var item in widget.choicesList) {
       choices.add(Container(
         padding: const EdgeInsets.all(8),
-        child: ChoiceChip(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(6)),
-            side: BorderSide(
+        child: Material(
+          child: ChoiceChip(
+            backgroundColor: Colors.white,
+            shadowColor: Colors.transparent,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: const BorderRadius.all(Radius.circular(6)),
+              side: BorderSide(
+                color: selectedChoices.contains(item)
+                    ? AppTheme.theme.colorScheme.secondary
+                    : const Color(0xFFEDEDED),
+                width: 1,
+              ),
+            ),
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+            labelPadding:
+                const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+            selectedColor: Colors.transparent,
+            selectedShadowColor: Colors.transparent,
+            label: NinjaText.bodySmall(
+              item,
               color: selectedChoices.contains(item)
                   ? AppTheme.theme.colorScheme.secondary
-                  : const Color(0xFFEDEDED),
-              width: 1,
+                  : const Color(0xFF696969),
             ),
-          ),
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-          labelPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-          selectedColor: Colors.transparent,
-          selectedShadowColor: Colors.transparent,
-          label: NinjaText.bodySmall(
-            item,
-            color: selectedChoices.contains(item)
-                ? AppTheme.theme.colorScheme.secondary
-                : const Color(0xFF696969),
-          ),
-          selected: selectedChoices.contains(item),
-          onSelected: (selected) {
-            setState(() {
-              if (widget.oneChoice) {
-                if (selectedChoices.contains(item) == false) {
-                  selectedChoices.clear();
-                  selectedChoices.add(item);
+            selected: selectedChoices.contains(item),
+            onSelected: (selected) {
+              setState(() {
+                if (widget.oneChoice) {
+                  if (selectedChoices.contains(item) == false) {
+                    selectedChoices.clear();
+                    selectedChoices.add(item);
+                  }
+                } else {
+                  selectedChoices.contains(item)
+                      ? selectedChoices.remove(item)
+                      : selectedChoices.add(item);
                 }
-              } else {
-                selectedChoices.contains(item)
-                    ? selectedChoices.remove(item)
-                    : selectedChoices.add(item);
-              }
-            });
-            widget.onPressed(selectedChoices);
-          },
+              });
+              widget.onPressed(selectedChoices);
+            },
+          ),
         ),
       ));
     }
