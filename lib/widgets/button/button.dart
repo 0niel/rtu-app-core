@@ -191,7 +191,7 @@ class NinjaButton extends StatelessWidget {
               shape ??
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
-                        borderRadiusAll ?? NinjaConstant.constant.buttonRadius),
+                        borderRadiusAll ?? NinjaConstant.buttonRadius),
                   ),
             ),
           ),
@@ -200,7 +200,7 @@ class NinjaButton extends StatelessWidget {
           color: bgColor,
           padding: padding,
           borderRadius: BorderRadius.circular(
-              borderRadiusAll ?? NinjaConstant.constant.buttonRadius),
+              borderRadiusAll ?? NinjaConstant.buttonRadius),
         ),
       );
     } else if (buttonType == NinjaButtonType.outlined) {
@@ -223,8 +223,8 @@ class NinjaButton extends StatelessWidget {
                 shape: MaterialStateProperty.all(
                   shape ??
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(borderRadiusAll ??
-                            NinjaConstant.constant.buttonRadius),
+                        borderRadius: BorderRadius.circular(
+                            borderRadiusAll ?? NinjaConstant.buttonRadius),
                       ),
                 ),
               ),
@@ -235,7 +235,7 @@ class NinjaButton extends StatelessWidget {
                 color: null,
                 border: Border.all(color: borderColor),
                 borderRadius: BorderRadius.circular(
-                    borderRadiusAll ?? NinjaConstant.constant.buttonRadius)),
+                    borderRadiusAll ?? NinjaConstant.buttonRadius)),
             child: CupertinoButton(
                 onPressed: onPressed, padding: padding, child: child)),
       );

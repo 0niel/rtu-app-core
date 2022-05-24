@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'text_style.dart';
+import 'package:rtu_app_core/rtu_app_core.dart';
 
 enum AppThemeType { light, dark }
 
@@ -13,11 +12,11 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
 
-    primaryColor: const Color(0xFFFFFB1F),
+    primaryColor: NinjaConstant.primary,
 
     /// Scaffold and Background color
-    backgroundColor: const Color(0xffffffff),
-    scaffoldBackgroundColor: const Color(0xffffffff),
+    backgroundColor: Colors.white,
+    scaffoldBackgroundColor: Colors.white,
     canvasColor: Colors.transparent,
 
     /// AppBar Theme
@@ -41,16 +40,16 @@ class AppTheme {
     /// Colorscheme
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary: Color(0xFFFFFB1F),
-      onPrimary: Color(0xFF232323),
-      secondary: Color(0xFF2563EB),
-      onSecondary: Color(0xFFFFFFFF),
-      error: Color(0xFFF75555),
-      background: Color(0xffffffff),
-      onBackground: Color(0xFF232323),
-      onError: Color(0xFFFFFFFF),
-      onSurface: Color(0xFF232323),
-      surface: Color(0xffffffff),
+      primary: NinjaConstant.primary,
+      onPrimary: NinjaConstant.primaryBlack,
+      secondary: NinjaConstant.secondary,
+      onSecondary: Colors.white,
+      error: NinjaConstant.error,
+      background: Colors.white,
+      onBackground: NinjaConstant.primaryBlack,
+      onError: Colors.white,
+      onSurface: NinjaConstant.primaryBlack,
+      surface: Colors.white,
     ),
 
     /// Floating Action Theme
@@ -65,8 +64,8 @@ class AppTheme {
 
     /// Divider Theme
     dividerTheme:
-        const DividerThemeData(color: Color(0xFFEDEDED), thickness: 1),
-    dividerColor: const Color(0xFFEDEDED),
+        const DividerThemeData(color: NinjaConstant.grey200, thickness: 1),
+    dividerColor: NinjaConstant.grey200,
 
     /// Bottom AppBar Theme
     bottomAppBarTheme:
@@ -84,13 +83,13 @@ class AppTheme {
 
     /// CheckBox theme
     checkboxTheme: CheckboxThemeData(
-      checkColor: MaterialStateProperty.all(const Color(0xffeeeeee)),
-      fillColor: MaterialStateProperty.all(const Color(0xff3C4EC5)),
+      checkColor: MaterialStateProperty.all(Colors.white),
+      fillColor: MaterialStateProperty.all(NinjaConstant.secondary),
     ),
 
     /// Radio theme
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.all(const Color(0xff3C4EC5)),
+      fillColor: MaterialStateProperty.all(NinjaConstant.secondary),
     ),
 
     ///Switch Theme
@@ -123,11 +122,11 @@ class AppTheme {
 
     /// Slider Theme
     sliderTheme: SliderThemeData(
-      activeTrackColor: const Color(0xff3d63ff),
-      inactiveTrackColor: const Color(0xff3d63ff).withAlpha(140),
+      activeTrackColor: NinjaConstant.secondary,
+      inactiveTrackColor: NinjaConstant.secondary200,
       trackShape: const RoundedRectSliderTrackShape(),
       trackHeight: 4.0,
-      thumbColor: const Color(0xff3d63ff),
+      thumbColor: NinjaConstant.secondary,
       thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 10.0),
       overlayShape: const RoundSliderOverlayShape(overlayRadius: 24.0),
       tickMarkShape: const RoundSliderTickMarkShape(),
@@ -142,7 +141,7 @@ class AppTheme {
     splashColor: Colors.white.withAlpha(100),
     indicatorColor: const Color(0xffeeeeee),
     highlightColor: const Color(0xffeeeeee),
-    errorColor: const Color(0xFFF75555),
+    errorColor: NinjaConstant.error,
   );
 
   static ThemeData darkTheme = ThemeData(

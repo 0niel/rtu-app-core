@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/themes/themes.dart';
-import 'package:unicons/unicons.dart';
 
-import '../../themes/app_theme.dart';
 import 'bottom_navigation_bar_item.dart';
 
 export 'bottom_navigation_bar_item.dart';
