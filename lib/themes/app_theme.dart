@@ -266,7 +266,8 @@ class AppTheme {
 
   static CupertinoThemeData cupertinoLightTheme = const CupertinoThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFFFFB1F),
+    primaryColor: NinjaConstant.primary,
+    primaryContrastingColor: NinjaConstant.secondary,
     scaffoldBackgroundColor: Colors.white,
   );
 

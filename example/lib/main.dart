@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformProvider(
-      initialPlatform: TargetPlatform.android,
+      initialPlatform: TargetPlatform.iOS,
       builder: (BuildContext context) => PlatformApp(
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
@@ -69,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Главная'),
         shadowColor: const Color.fromRGBO(0, 0, 0, 0.13),

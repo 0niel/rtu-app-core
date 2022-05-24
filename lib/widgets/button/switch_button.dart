@@ -56,7 +56,11 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
             color: NinjaConstant.grey100,
             borderRadius: BorderRadius.all(Radius.circular(50)),
           ),
-          child: Icon(widget.icon, size: 16),
+          child: Icon(
+            widget.icon,
+            size: 16,
+            color: AppTheme.theme.colorScheme.onBackground,
+          ),
         ),
         const SizedBox(width: 14),
         NinjaText.bodyMedium(widget.text, fontWeight: 600),
@@ -92,7 +96,10 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
         Padding(
           padding: EdgeInsets.only(
               left: widget.padding.left, right: widget.padding.right),
-          child: const Divider(height: 1),
+          child: Divider(
+            height: 1,
+            color: AppTheme.theme.dividerColor,
+          ),
         ),
       ],
     );
