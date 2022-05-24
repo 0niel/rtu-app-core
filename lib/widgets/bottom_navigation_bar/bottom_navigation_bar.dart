@@ -1,3 +1,4 @@
+import 'package:enough_platform_widgets/enough_platform_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/themes/themes.dart';
@@ -99,7 +100,7 @@ class NinjaBottomNavigationBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _NinjaBottomNavigationBarState createState() =>
+  State<NinjaBottomNavigationBar> createState() =>
       _NinjaBottomNavigationBarState();
 }
 
@@ -109,6 +110,7 @@ class _NinjaBottomNavigationBarState extends State<NinjaBottomNavigationBar>
 
   @override
   void initState() {
+    super.initState();
     _currentIndex = widget.initialIndex;
   }
 
@@ -150,24 +152,13 @@ class _NinjaBottomNavigationBarState extends State<NinjaBottomNavigationBar>
       );
 
       list.add(
-        PlatformWidget(
-          cupertino: (_, __) => GestureDetector(
-            onTap: () {
-              setState(() {
-                _currentIndex = i;
-              });
-            },
-            child: item,
-          ),
-          material: (_, __) => InkWell(
-            onTap: () {
-              setState(() {
-                _currentIndex = i;
-              });
-            },
-            borderRadius: BorderRadius.circular(50),
-            child: item,
-          ),
+        PlatformInkWell(
+          onTap: () {
+            setState(() {
+              _currentIndex = i;
+            });
+          },
+          child: item,
         ),
       );
     }
