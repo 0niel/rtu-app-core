@@ -50,6 +50,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  cupertino_list_tile:
+    dependency: transitive
+    description:
+      name: cupertino_list_tile
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
+  cupertino_progress_bar:
+    dependency: transitive
+    description:
+      name: cupertino_progress_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
+  cupertino_stepper:
+    dependency: transitive
+    description:
+      name: cupertino_stepper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
+  enough_platform_widgets:
+    dependency: transitive
+    description:
+      name: enough_platform_widgets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
   fake_async:
     dependency: transitive
     description:
