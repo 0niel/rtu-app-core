@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
+import 'package:rtu_app_core/widgets/button/icon_button.dart';
 import 'package:unicons/unicons.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformProvider(
-      initialPlatform: TargetPlatform.iOS,
+      initialPlatform: TargetPlatform.android,
       builder: (BuildContext context) => PlatformApp(
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
@@ -187,14 +188,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
-                    Container(
-                      alignment: FractionalOffset.center,
-                      child: NinjaSwitchButton(
-                        icon: UniconsLine.schedule,
-                        text: 'Пустые пары',
-                        onChanged: (value) {},
-                        initialValue: false,
-                      ),
+                    NinjaSwitchButton(
+                      icon: UniconsLine.schedule,
+                      text: 'Пустые пары',
+                      onChanged: (value) {},
+                      initialValue: false,
+                    ),
+                    NinjaIconButton(
+                      icon: UniconsLine.package,
+                      text: 'Группы',
+                      additionalText: '15',
+                      onPressed: () {},
+                    ),
+                    NinjaIconButton(
+                      icon: UniconsLine.moneybag,
+                      text: 'Преподаватели',
+                      onPressed: () {},
                     ),
                     NinjaChoiceChip(
                       onPressed: (selected) {
