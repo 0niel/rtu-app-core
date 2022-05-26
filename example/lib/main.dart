@@ -212,6 +212,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       oneChoice: true,
                       choicesList: const ['Муж', 'Жен'],
                     ),
+                    NinjaTitledButton(
+                        title: 'Наш телеграм',
+                        text: 't.me/mirea_ninja_chat',
+                        onPressed: () {}),
                     const SizedBox(height: 80),
                   ],
                 ),
