@@ -32,7 +32,7 @@ rtu-app-core включает в себя стандартные компоне�
 ```
 rtu_app_core:
     git:
-      url: git://github.com/mirea-ninja/rtu-app-core.git
+      url: https://github.com/mirea-ninja/rtu-app-core.git
       ref: main 
 
 ```
