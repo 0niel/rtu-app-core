@@ -3,6 +3,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
 import 'package:rtu_app_core/widgets/button/icon_button.dart';
+import 'package:rtu_app_core/widgets/calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -48,24 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> categoryList = [
-    "#Праздники",
-    "#Минобрнауки РФ",
-    "#Ректор",
-    "#Абитуриентам",
-    "#Студентам",
-    "#ИИТ",
-    "#ИКБ",
-    "#Сотрудникам",
-    "#ИПИТИП",
-    "#Спорт",
-    "#Колледж",
-    "#Оброзование",
-    "#ИМО",
-    "#ИИИ",
-    "#ИТХТ им. М.В. Ломоносова",
-    "#Волонтерство",
-  ];
+  Widget currentScreen = _HomeScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -86,142 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Stack(
         children: [
-          LayoutBuilder(builder:
-              (BuildContext context, BoxConstraints viewportConstraints) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: viewportConstraints.maxHeight,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(24),
-                      child: NinjaText.h2('Font Used'),
-                    ),
-                    SizedBox(
-                      height: 130,
-                      child: ListView(
-                        primary: false,
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        children: const [
-                          FontCard(
-                            largeIcon: NinjaText.h1("Aa"),
-                            title: NinjaText.bodyXLarge("SF Pro Display",
-                                fontWeight: 700),
-                            subtitle: NinjaText.bodyLarge("Bold",
-                                fontWeight: 700, color: Color(0xFF98999A)),
-                          ),
-                          SizedBox(width: 32),
-                          FontCard(
-                            largeIcon: NinjaText.h1("Aa", fontWeight: 600),
-                            title: NinjaText.bodyXLarge("SF Pro Display",
-                                fontWeight: 600),
-                            subtitle: NinjaText.bodyLarge("Semibold",
-                                fontWeight: 600, color: Color(0xFF98999A)),
-                          ),
-                          SizedBox(width: 32),
-                          FontCard(
-                            largeIcon: NinjaText.h1("Aa"),
-                            title: NinjaText.bodyXLarge("SF Pro Display",
-                                fontWeight: 500),
-                            subtitle: NinjaText.bodyLarge("Medium",
-                                fontWeight: 500, color: Color(0xFF98999A)),
-                          ),
-                          SizedBox(width: 32),
-                          FontCard(
-                            largeIcon: NinjaText.h1("Aa"),
-                            title: NinjaText.bodyXLarge("SF Pro Display",
-                                fontWeight: 400),
-                            subtitle: NinjaText.bodyLarge("Regular",
-                                fontWeight: 400, color: Color(0xFF98999A)),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          NinjaPrimaryButton(
-                            onPressed: () {},
-                            padding: const EdgeInsets.only(top: 16, bottom: 18),
-                            expanded: true,
-                            child: const NinjaText.bodyLarge('Начать',
-                                fontWeight: 700),
-                          ),
-                          const SizedBox(height: 24),
-                          NinjaOutlinedButton(
-                            expanded: true,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.string(
-                                    '<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.06061 5.97461H10V3.96192H6.06061V0H3.92992V3.96192H0V5.97461H3.92992V10H6.06061V5.97461Z" fill="#2563EB"/></svg>',
-                                    width: 10,
-                                    height: 10,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  NinjaText.bodyMedium(
-                                    'Добавить бронь',
-                                    fontWeight: 600,
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                  ),
-                                ]),
-                            onPressed: () {},
-                          ),
-                          const SizedBox(height: 24),
-                          NinjaTextButton(
-                              text: '+ Добавить комментарии', onPressed: () {}),
-                          NinjaChoiceChip(
-                            onPressed: (selected) {
-                              print(selected);
-                            },
-                            choicesList: categoryList,
-                          ),
-                        ],
-                      ),
-                    ),
-                    NinjaSwitchButton(
-                      icon: UniconsLine.schedule,
-                      text: 'Пустые пары',
-                      onChanged: (value) {},
-                      initialValue: false,
-                    ),
-                    NinjaIconButton(
-                      icon: UniconsLine.package,
-                      text: 'Группы',
-                      additionalText: '15',
-                      onPressed: () {},
-                    ),
-                    NinjaIconButton(
-                      icon: UniconsLine.moneybag,
-                      text: 'Преподаватели',
-                      onPressed: () {},
-                    ),
-                    NinjaChoiceChip(
-                      onPressed: (selected) {
-                        print(selected);
-                      },
-                      oneChoice: true,
-                      choicesList: const ['Муж', 'Жен'],
-                    ),
-                    NinjaTitledButton(
-                        title: 'Наш телеграм',
-                        text: 't.me/mirea_ninja_chat',
-                        onPressed: () {}),
-                    const SizedBox(height: 80),
-                  ],
-                ),
-              ),
-            );
-          }),
+          currentScreen,
           Positioned(
             left: 0,
             right: 0,
@@ -234,11 +83,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 NinjaBottomNavigationBarItem(
                     title: 'Новости',
                     icon: UniconsLine.newspaper,
-                    onPressed: (index) {}),
+                    onPressed: (index) {
+                      print('Pressed');
+                      setState(() {
+                        currentScreen = _HomeScreen();
+                      });
+                    }),
                 NinjaBottomNavigationBarItem(
                     title: 'Расписание',
                     icon: UniconsLine.calender,
-                    onPressed: (index) {}),
+                    onPressed: (index) {
+                      setState(() {
+                        currentScreen = _ScheduleScreen();
+                      });
+                    }),
                 NinjaBottomNavigationBarItem(
                     title: 'Карта',
                     icon: UniconsLine.map_pin_alt,
@@ -260,8 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class FontCard extends StatelessWidget {
-  const FontCard(
+class _FontCard extends StatelessWidget {
+  const _FontCard(
       {Key? key,
       required this.largeIcon,
       required this.title,
@@ -304,6 +162,173 @@ class FontCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ScheduleScreen extends StatelessWidget {
+  const _ScheduleScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return NinjaTableCalendar();
+  }
+}
+
+class _HomeScreen extends StatefulWidget {
+  const _HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<_HomeScreen> {
+  List<String> categoryList = [
+    "#Праздники",
+    "#Минобрнауки РФ",
+    "#Ректор",
+    "#Абитуриентам",
+    "#Студентам",
+    "#ИИТ",
+    "#ИКБ",
+    "#Сотрудникам",
+    "#ИПИТИП",
+    "#Спорт",
+    "#Колледж",
+    "#Оброзование",
+    "#ИМО",
+    "#ИИИ",
+    "#ИТХТ им. М.В. Ломоносова",
+    "#Волонтерство",
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(24),
+            child: NinjaText.h2('Font Used'),
+          ),
+          SizedBox(
+            height: 130,
+            child: ListView(
+              primary: false,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              children: const [
+                _FontCard(
+                  largeIcon: NinjaText.h1("Aa"),
+                  title:
+                      NinjaText.bodyXLarge("SF Pro Display", fontWeight: 700),
+                  subtitle: NinjaText.bodyLarge("Bold",
+                      fontWeight: 700, color: Color(0xFF98999A)),
+                ),
+                SizedBox(width: 32),
+                _FontCard(
+                  largeIcon: NinjaText.h1("Aa", fontWeight: 600),
+                  title:
+                      NinjaText.bodyXLarge("SF Pro Display", fontWeight: 600),
+                  subtitle: NinjaText.bodyLarge("Semibold",
+                      fontWeight: 600, color: Color(0xFF98999A)),
+                ),
+                SizedBox(width: 32),
+                _FontCard(
+                  largeIcon: NinjaText.h1("Aa"),
+                  title:
+                      NinjaText.bodyXLarge("SF Pro Display", fontWeight: 500),
+                  subtitle: NinjaText.bodyLarge("Medium",
+                      fontWeight: 500, color: Color(0xFF98999A)),
+                ),
+                SizedBox(width: 32),
+                _FontCard(
+                  largeIcon: NinjaText.h1("Aa"),
+                  title:
+                      NinjaText.bodyXLarge("SF Pro Display", fontWeight: 400),
+                  subtitle: NinjaText.bodyLarge("Regular",
+                      fontWeight: 400, color: Color(0xFF98999A)),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                NinjaPrimaryButton(
+                  onPressed: () {},
+                  padding: const EdgeInsets.only(top: 16, bottom: 18),
+                  expanded: true,
+                  child: const NinjaText.bodyLarge('Начать', fontWeight: 700),
+                ),
+                const SizedBox(height: 24),
+                NinjaOutlinedButton(
+                  expanded: true,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.string(
+                          '<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.06061 5.97461H10V3.96192H6.06061V0H3.92992V3.96192H0V5.97461H3.92992V10H6.06061V5.97461Z" fill="#2563EB"/></svg>',
+                          width: 10,
+                          height: 10,
+                        ),
+                        const SizedBox(width: 4),
+                        NinjaText.bodyMedium(
+                          'Добавить бронь',
+                          fontWeight: 600,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ]),
+                  onPressed: () {},
+                ),
+                const SizedBox(height: 24),
+                NinjaTextButton(
+                    text: '+ Добавить комментарии', onPressed: () {}),
+                NinjaChoiceChip(
+                  onPressed: (selected) {
+                    print(selected);
+                  },
+                  choicesList: categoryList,
+                ),
+              ],
+            ),
+          ),
+          NinjaSwitchButton(
+            icon: UniconsLine.schedule,
+            text: 'Пустые пары',
+            onChanged: (value) {},
+            initialValue: false,
+          ),
+          NinjaIconButton(
+            icon: UniconsLine.package,
+            text: 'Группы',
+            additionalText: '15',
+            onPressed: () {},
+          ),
+          NinjaIconButton(
+            icon: UniconsLine.moneybag,
+            text: 'Преподаватели',
+            onPressed: () {},
+          ),
+          NinjaChoiceChip(
+            onPressed: (selected) {
+              print(selected);
+            },
+            oneChoice: true,
+            choicesList: const ['Муж', 'Жен'],
+          ),
+          NinjaTitledButton(
+              title: 'Наш телеграм',
+              text: 't.me/mirea_ninja_chat',
+              onPressed: () {}),
+          const SizedBox(height: 80),
+        ],
       ),
     );
   }
