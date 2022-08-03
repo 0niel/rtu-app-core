@@ -154,6 +154,7 @@ class _NinjaBottomNavigationBarState extends State<NinjaBottomNavigationBar>
       list.add(
         PlatformInkWell(
           onTap: () {
+            widget.items[i].onPressed(i);
             setState(() {
               _currentIndex = i;
             });
