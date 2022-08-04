@@ -1,15 +1,64 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:rtu_app_core/themes/text_style.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../themes/app_theme.dart';
 import '../../themes/constant.dart';
+import '../button/button.dart';
+import '../text/text.dart';
 
-class NinjaTableCalendar extends StatelessWidget {
-  const NinjaTableCalendar({Key? key}) : super(key: key);
+class NinjaTableCalendar extends StatefulWidget {
+  NinjaTableCalendar(
+      {Key? key, required this.firstCalendarDay, required this.lastCalendarDay})
+      : super(key: key);
+
+  final DateTime firstCalendarDay;
+  final DateTime lastCalendarDay;
+
+  final SvgPicture headerLeftIcon = SvgPicture.string(
+      """<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5L5 9" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1 5L5 1" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+""");
+
+  final headerRightIcon = SvgPicture.string(
+      """<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 5L1 9" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5 5L1 1" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+""");
+
+  @override
+  State<NinjaTableCalendar> createState() => _NinjaTableCalendarState();
+}
+
+class _NinjaTableCalendarState extends State<NinjaTableCalendar> {
+  late final PageController _pageController;
+
+  CalendarFormat _calendarFormat = CalendarFormat.week;
+  DateTime _focusedDay = DateTime.now();
+  DateTime _selectedDay = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  /// Normalization of the day so that the day is not up to [widget.lastCalendarDay]
+  /// and after [widget.firstCalendarDay].
+  DateTime _validateDayInRange(DateTime newDate) {
+    if (newDate.isAfter(widget.lastCalendarDay)) {
+      return widget.lastCalendarDay;
+    } else if (newDate.isBefore(widget.firstCalendarDay)) {
+      return widget.firstCalendarDay;
+    }
+    return newDate;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +67,77 @@ class NinjaTableCalendar extends StatelessWidget {
       weekendDays: const [DateTime.sunday],
       startingDayOfWeek: StartingDayOfWeek.monday,
       sixWeekMonthsEnforced: false,
+      onCalendarCreated: (controller) => _pageController = controller,
       calendarBuilders: CalendarBuilders(
+        headerTitleBuilder: (context, day) {
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  NinjaButton.rounded(
+                    backgroundColor: Colors.transparent,
+                    child: widget.headerLeftIcon,
+                    onPressed: () {
+                      _pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn,
+                      );
+                    },
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      NinjaText.bodyMedium(
+                        DateFormat.yMMMM('ru_RU').format(day)[0].toUpperCase() +
+                            DateFormat.yMMMM('ru_RU')
+                                .format(day)
+                                .substring(1)
+                                .replaceAll(RegExp(r' г.'), ' '),
+                        color: AppTheme.theme.colorScheme.onBackground,
+                        fontWeight: 600,
+                      ),
+                      const SizedBox(width: 5.50),
+                      Container(
+                        width: 5,
+                        height: 5,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xff232323),
+                        ),
+                      ),
+                      const SizedBox(width: 5.50),
+                      NinjaText.bodyMedium(
+                        "12 неделя",
+                        color: AppTheme.theme.colorScheme.onBackground,
+                        fontWeight: 600,
+                      ),
+                    ],
+                  ),
+                  NinjaButton.rounded(
+                    backgroundColor: Colors.transparent,
+                    onPressed: () {
+                      _pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn,
+                      );
+                    },
+                    child: widget.headerRightIcon,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              const Divider(
+                color: NinjaConstant.grey200,
+                height: 1,
+                indent: 24,
+                endIndent: 24,
+              ),
+              const SizedBox(height: 20),
+            ],
+          );
+        },
         defaultBuilder: (context, day, focusedDay) {
           return Container(
             width: 30,
@@ -168,6 +287,12 @@ class NinjaTableCalendar extends StatelessWidget {
         ),
         isTodayHighlighted: true,
       ),
+      headerVisible: true,
+      headerStyle: const HeaderStyle(
+        formatButtonVisible: false,
+        leftChevronVisible: false,
+        rightChevronVisible: false,
+      ),
       availableCalendarFormats: const {
         CalendarFormat.month: 'Месяц',
         CalendarFormat.twoWeeks: '2 недели',
@@ -179,14 +304,40 @@ class NinjaTableCalendar extends StatelessWidget {
           (index) => 'Event ${index + 1}',
         );
       },
-      onDaySelected: (selectedDay, focusedDay) {},
-      onFormatChanged: (format) {},
-      onPageChanged: (focusedDay) {},
+      selectedDayPredicate: (day) {
+        // Use `selectedDayPredicate` to determine which day is currently selected.
+        // If this returns true, then `day` will be marked as selected.
+
+        // Using `isSameDay` is recommended to disregard
+        // the time-part of compared DateTime objects.
+        return isSameDay(_selectedDay, day);
+      },
+      onDaySelected: (selectedDay, focusedDay) {
+        if (!isSameDay(_selectedDay, selectedDay)) {
+          setState(() {
+            _selectedDay = selectedDay;
+            _focusedDay = _validateDayInRange(focusedDay);
+          });
+        }
+      },
+      onPageChanged: (focusedDay) {
+        // No need to call `setState()` here
+        _focusedDay = _validateDayInRange(focusedDay);
+      },
+      onFormatChanged: (format) {
+        if (_calendarFormat != format) {
+          // Call `setState()` when updating calendar format
+          setState(() {
+            _calendarFormat = format;
+          });
+        }
+      },
       onHeaderTapped: (date) {},
       onHeaderLongPressed: (date) {},
-      firstDay: DateTime(2020, 1, 1),
-      focusedDay: DateTime.now(),
-      lastDay: DateTime(2024, 1, 1),
+      firstDay: widget.firstCalendarDay,
+      lastDay: widget.lastCalendarDay,
+      focusedDay: _focusedDay,
+      calendarFormat: _calendarFormat,
     );
   }
 }

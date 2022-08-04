@@ -49,7 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Widget currentScreen = _HomeScreen();
+  Widget currentScreen = const _HomeScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: (index) {
                       print('Pressed');
                       setState(() {
-                        currentScreen = _HomeScreen();
+                        currentScreen = const _HomeScreen();
                       });
                     }),
                 NinjaBottomNavigationBarItem(
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: UniconsLine.calender,
                     onPressed: (index) {
                       setState(() {
-                        currentScreen = _ScheduleScreen();
+                        currentScreen = const _ScheduleScreen();
                       });
                     }),
                 NinjaBottomNavigationBarItem(
@@ -172,7 +172,10 @@ class _ScheduleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NinjaTableCalendar();
+    return NinjaTableCalendar(
+      firstCalendarDay: DateTime(2021, 1, 1),
+      lastCalendarDay: DateTime(2022, 12, 31),
+    );
   }
 }
 
