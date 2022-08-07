@@ -138,113 +138,14 @@ class _NinjaTableCalendarState extends State<NinjaTableCalendar> {
             ],
           );
         },
-        defaultBuilder: (context, day, focusedDay) {
-          return Container(
-            width: 30,
-            height: 40,
-            alignment: Alignment.topCenter,
-            child: Container(
-              width: 30,
-              height: 30,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(
-                  color: NinjaConstant.grey100,
-                  width: 1,
-                ),
-              ),
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                day.day.toString(),
-                style: NinjaTextStyle.bodyMedium(
-                    fontWeight: 600,
-                    color: (day.weekday == 6 || day.weekday == 7)
-                        ? const Color(0xFF8F9BB3)
-                        : NinjaConstant.primaryBlack),
-              ),
-            ),
-          );
-        },
-        todayBuilder: (context, day, focusedDay) {
-          return Container(
-            width: 30,
-            height: 40,
-            alignment: Alignment.topCenter,
-            child: Container(
-              width: 30,
-              height: 30,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(
-                  color: NinjaConstant.error,
-                  width: 1,
-                ),
-              ),
-              child: Text(
-                day.day.toString(),
-                style: NinjaTextStyle.bodyMedium(
-                  fontWeight: 600,
-                  color: NinjaConstant.error,
-                ),
-              ),
-            ),
-          );
-        },
-        selectedBuilder: (context, day, focusedDay) {
-          return Container(
-            width: 30,
-            height: 40,
-            alignment: Alignment.topCenter,
-            child: Container(
-              width: 30,
-              height: 30,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color: NinjaConstant.primary,
-              ),
-              child: Text(
-                day.day.toString(),
-                style: NinjaTextStyle.bodyMedium(
-                  fontWeight: 600,
-                  color: NinjaConstant.primaryBlack,
-                ),
-              ),
-            ),
-          );
-        },
-        outsideBuilder: (context, day, focusedDay) {
-          return Container(
-            width: 30,
-            height: 40,
-            alignment: Alignment.topCenter,
-            child: Container(
-              width: 30,
-              height: 30,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(
-                  color: NinjaConstant.grey100,
-                  width: 1,
-                ),
-              ),
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                day.day.toString(),
-                style: NinjaTextStyle.bodyMedium(
-                  fontWeight: 600,
-                  color: const Color(0xFF8F9BB3)
-                      .withOpacity(0.4), // TODO: change this
-                ),
-              ),
-            ),
-          );
-        },
+        defaultBuilder: (context, day, focusedDay) =>
+            _CellBuilder(type: BuilderType.defaultBuilder, day: day),
+        todayBuilder: (context, day, focusedDay) =>
+            _CellBuilder(type: BuilderType.todayBuilder, day: day),
+        selectedBuilder: (context, day, focusedDay) =>
+            _CellBuilder(type: BuilderType.selectedBuilder, day: day),
+        outsideBuilder: (context, day, focusedDay) =>
+            _CellBuilder(type: BuilderType.outsideBuilder, day: day),
         markerBuilder: (context, day, events) {
           return Padding(
             padding: const EdgeInsets.only(top: 10),
@@ -340,4 +241,74 @@ class _NinjaTableCalendarState extends State<NinjaTableCalendar> {
       calendarFormat: _calendarFormat,
     );
   }
+}
+
+enum BuilderType {
+  defaultBuilder,
+  todayBuilder,
+  selectedBuilder,
+  outsideBuilder,
+}
+
+/// Custom builders for day cells.
+class _CellBuilder extends StatelessWidget {
+  const _CellBuilder({Key? key, required this.day, required this.type})
+      : super(key: key);
+
+  final DateTime day;
+  final BuilderType type;
+
+  BoxDecoration _buildBoxDecoration() {
+    if (type == BuilderType.selectedBuilder) {
+      return BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        color: NinjaConstant.primary,
+      );
+    }
+    return BoxDecoration(
+      shape: BoxShape.rectangle,
+      borderRadius: BorderRadius.circular(6),
+      border: Border.all(
+        color: type == BuilderType.todayBuilder
+            ? NinjaConstant.error
+            : NinjaConstant.grey100,
+        width: 1,
+      ),
+    );
+  }
+
+  Color _getTextColor() {
+    switch (type) {
+      case BuilderType.defaultBuilder:
+        return (day.weekday == 6 || day.weekday == 7)
+            ? const Color(0xFF8F9BB3)
+            : NinjaConstant.primaryBlack;
+      case BuilderType.todayBuilder:
+        return NinjaConstant.error;
+      case BuilderType.selectedBuilder:
+        return NinjaConstant.primaryBlack;
+      case BuilderType.outsideBuilder:
+        return const Color(0xFF8F9BB3).withOpacity(0.4);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
+        width: 30,
+        height: 40,
+        alignment: Alignment.topCenter,
+        child: Container(
+          width: 30,
+          height: 30,
+          alignment: Alignment.center,
+          decoration: _buildBoxDecoration(),
+          child: Text(
+            day.day.toString(),
+            style: NinjaTextStyle.bodyMedium(
+              fontWeight: 600,
+              color: _getTextColor(),
+            ),
+          ),
+        ),
+      );
 }
