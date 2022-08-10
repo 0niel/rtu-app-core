@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rtu_app_core/rtu_app_core.dart';
+import 'package:rtu_app_core/src/themes/text_style.dart';
+
+import 'constant.dart';
 
 enum AppThemeType { light, dark }
 

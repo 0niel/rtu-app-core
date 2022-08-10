@@ -1,5 +1,5 @@
 library rtu_app_core;
 
-export 'themes/themes.dart';
-export 'widgets/widgets.dart';
-export 'utils/utils.dart';
+export 'src/themes/themes.dart';
+export 'src/widgets/widgets.dart';
+export 'src/utils/utils.dart';

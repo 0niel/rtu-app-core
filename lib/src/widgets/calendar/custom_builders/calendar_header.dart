@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:rtu_app_core/widgets/text/text.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../../themes/themes.dart';
-import '../../button/button.dart';
+import '../../widgets.dart';
 
 class CalendarHeader extends StatelessWidget {
   const CalendarHeader(

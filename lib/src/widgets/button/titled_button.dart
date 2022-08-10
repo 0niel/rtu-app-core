@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rtu_app_core/themes/themes.dart';
 
+import '../../themes/app_theme.dart';
+import '../../themes/constant.dart';
 import '../text/text.dart';
 import 'button.dart';
 

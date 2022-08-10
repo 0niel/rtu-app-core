@@ -1,7 +1,8 @@
 /// Implementation of Text Widgets.
 /// h1, h2, h3, h4, h5, h6, bodyXLarge, bodyLarge, bodyMedium, bodySmall, bodyXSmall.
 import 'package:flutter/material.dart';
-import 'package:rtu_app_core/themes/themes.dart';
+
+import '../../themes/themes.dart';
 
 class NinjaText extends StatelessWidget {
   final String text;

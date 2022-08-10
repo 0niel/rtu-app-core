@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rtu_app_core/themes/text_style.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../themes/themes.dart';
 import 'custom_builders/builder_type.dart';
 import 'custom_builders/calendar_header.dart';
 import 'custom_builders/cell_builder.dart';
