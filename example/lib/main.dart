@@ -360,6 +360,24 @@ class _HomeScreenState extends State<_HomeScreen> {
               oneChoice: true,
               choicesList: const ['Муж', 'Жен'],
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: NinjaInput.filled(
+                hintText: 'Поиск  группы',
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: NinjaInput.outlined(
+                hintText: 'Поиск  группы',
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: NinjaInput.underlined(
+                hintText: 'Введите пароль',
+              ),
+            ),
             NinjaTitledButton(
                 title: 'Наш телеграм',
                 text: 't.me/mirea_ninja_chat',
