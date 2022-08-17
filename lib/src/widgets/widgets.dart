@@ -14,3 +14,4 @@ export 'calendar/table_calendar.dart';
 export 'bottom_navigation_bar/bottom_navigation_bar.dart';
 export 'bottom_navigation_bar/bottom_navigation_bar_item.dart';
 export 'input/ninja_input.dart';
+export 'vertical_select/vertical_select_builder.dart';

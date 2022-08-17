@@ -7,7 +7,7 @@ abstract class NinjaInputThemes {
         fillColor: NinjaConstant.grey200,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          borderSide: BorderSide(width: 1, color: NinjaConstant.secondary300),
+          borderSide: BorderSide(width: 1, color: NinjaConstant.secondary),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -22,7 +22,7 @@ abstract class NinjaInputThemes {
   // get context to find Brightness to implement light and dark themes
   static underlineBorder(BuildContext context) => const InputDecorationTheme(
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(width: 1, color: NinjaConstant.secondary300),
+          borderSide: BorderSide(width: 1, color: NinjaConstant.secondary),
         ),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(width: 1, color: NinjaConstant.grey300),

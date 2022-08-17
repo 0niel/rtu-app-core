@@ -362,26 +362,49 @@ class _HomeScreenState extends State<_HomeScreen> {
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: NinjaInput.filled(
+              child: NinjaInputFilled(
                 hintText: 'Поиск  группы',
               ),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: NinjaInput.outlined(
-                hintText: 'Поиск  группы',
+              child: NinjaInputOutlined(
+                hintText: 'Поиск по расписанию',
               ),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: NinjaInput.underlined(
+              child: NinjaInputUnderlined(
                 hintText: 'Введите пароль',
               ),
             ),
+            const SizedBox(height: 24),
+            NinjaVerticalSelectBuilder<_Role>(
+              onChanged: (_) {},
+              values: _Role.values.reversed.toList(),
+              builder: (context, value) => SizedBox(
+                height: 40,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const NinjaText.bodySmall(
+                      'Роль',
+                      color: NinjaConstant.grey400,
+                    ),
+                    NinjaText.bodyLarge(
+                      'Я ${value == _Role.student ? 'Студент' : 'Преподаватель'}',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
             NinjaTitledButton(
-                title: 'Наш телеграм',
-                text: 't.me/mirea_ninja_chat',
-                onPressed: () {}),
+              title: 'Наш телеграм',
+              text: 't.me/mirea_ninja_chat',
+              onPressed: () {},
+            ),
             const SizedBox(height: 80),
           ],
         ),
@@ -389,3 +412,5 @@ class _HomeScreenState extends State<_HomeScreen> {
     );
   }
 }
+
+enum _Role { teacher, student }
