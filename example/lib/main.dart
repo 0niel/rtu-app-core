@@ -1,3 +1,5 @@
+import 'package:example/widgets/password_input.dart';
+import 'package:example/widgets/select_role.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -360,10 +362,36 @@ class _HomeScreenState extends State<_HomeScreen> {
               oneChoice: true,
               choicesList: const ['Муж', 'Жен'],
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: NinjaInputFilled(
+                hintText: 'Поиск  группы',
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: NinjaInputOutlined(
+                hintText: 'Поиск по расписанию',
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: NinjaInputUnderlined(
+                hintText: 'Введите Email',
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: PasswordInput(),
+            ),
+            const SizedBox(height: 24),
+            const SelectRoleExample(),
+            const SizedBox(height: 24),
             NinjaTitledButton(
-                title: 'Наш телеграм',
-                text: 't.me/mirea_ninja_chat',
-                onPressed: () {}),
+              title: 'Наш телеграм',
+              text: 't.me/mirea_ninja_chat',
+              onPressed: () {},
+            ),
             const SizedBox(height: 80),
           ],
         ),

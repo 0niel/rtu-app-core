@@ -144,6 +144,23 @@ class AppTheme {
     indicatorColor: const Color(0xffeeeeee),
     highlightColor: const Color(0xffeeeeee),
     errorColor: NinjaConstant.error,
+
+    /// Input (Text-Field) Theme
+    inputDecorationTheme: const InputDecorationTheme(
+      fillColor: NinjaConstant.grey200,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderSide: BorderSide(width: 1, color: NinjaConstant.secondary300),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderSide: BorderSide(width: 1, color: NinjaConstant.grey200),
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderSide: BorderSide(width: 1, color: NinjaConstant.grey200),
+      ),
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -172,15 +189,15 @@ class AppTheme {
     /// Input (Text-Field) Theme
     inputDecorationTheme: const InputDecorationTheme(
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
         borderSide: BorderSide(width: 1, color: Color(0xff069DEF)),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
         borderSide: BorderSide(width: 1, color: Colors.white70),
       ),
       border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(width: 1, color: Colors.white70)),
     ),
 
