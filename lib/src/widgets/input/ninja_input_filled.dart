@@ -41,9 +41,24 @@ class NinjaInputFilled extends StatelessWidget {
 
     return NinjaInputBasic(
       highlightIconColor: themeData.colorScheme.onBackground,
-      border: InputBorder.none,
-      focusedBorder: InputBorder.none,
-      enabledBorder: InputBorder.none,
+      border: const OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
       filled: true,
       fillColor: NinjaConstant.grey50,
       style: NinjaTextStyle.bodyLarge(),
