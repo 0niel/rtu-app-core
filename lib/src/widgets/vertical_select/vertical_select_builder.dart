@@ -80,9 +80,9 @@ class _ItemBuild<T> extends StatelessWidget {
       onTap: () => onTap(),
       child: Ink(
         decoration: BoxDecoration(
-          color: active ? Theme.of(context).canvasColor : NinjaConstant.grey100,
+          color: active ? Theme.of(context).canvasColor : NinjaConstant.grey50,
           border: Border.all(
-            color: active ? NinjaConstant.secondary : NinjaConstant.grey100,
+            color: active ? NinjaConstant.secondary : NinjaConstant.grey50,
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(12),

@@ -1,3 +1,5 @@
+import 'package:example/widgets/password_input.dart';
+import 'package:example/widgets/select_role.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -375,30 +377,15 @@ class _HomeScreenState extends State<_HomeScreen> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: NinjaInputUnderlined(
-                hintText: 'Введите пароль',
+                hintText: 'Введите Email',
               ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: PasswordInput(),
             ),
             const SizedBox(height: 24),
-            NinjaVerticalSelectBuilder<_Role>(
-              onChanged: (_) {},
-              values: _Role.values.reversed.toList(),
-              builder: (context, value) => SizedBox(
-                height: 40,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const NinjaText.bodySmall(
-                      'Роль',
-                      color: NinjaConstant.grey400,
-                    ),
-                    NinjaText.bodyLarge(
-                      'Я ${value == _Role.student ? 'Студент' : 'Преподаватель'}',
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            const SelectRoleExample(),
             const SizedBox(height: 24),
             NinjaTitledButton(
               title: 'Наш телеграм',
@@ -412,5 +399,3 @@ class _HomeScreenState extends State<_HomeScreen> {
     );
   }
 }
-
-enum _Role { teacher, student }

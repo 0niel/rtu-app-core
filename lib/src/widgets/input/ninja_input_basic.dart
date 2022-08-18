@@ -19,10 +19,13 @@ class NinjaInputBasic extends StatelessWidget {
     required this.fillColor,
     required this.filled,
     required this.focusedBorder,
-    required this.hintColor,
+    required this.hintStyle,
     required this.prefixIcon,
-    required this.textColor,
+    required this.style,
     required this.highlightIconColor,
+    this.contentPadding,
+    this.isDense,
+    this.suffixIcon,
   }) : super(key: key);
 
   final String? Function(String?)? validator;
@@ -35,8 +38,8 @@ class NinjaInputBasic extends StatelessWidget {
   final bool obscureText;
   final TextEditingController? textEditingController;
 
-  final Color textColor;
-  final Color hintColor;
+  final TextStyle style;
+  final TextStyle hintStyle;
   final Widget? prefixIcon;
   final InputBorder focusedBorder;
   final InputBorder enabledBorder;
@@ -45,39 +48,50 @@ class NinjaInputBasic extends StatelessWidget {
   final Color? fillColor;
   final Color highlightIconColor;
 
+  final EdgeInsets? contentPadding;
+  final bool? isDense;
+  final Widget? suffixIcon;
+
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(
-        // override highlight prefixIcon color
-        colorScheme: ThemeData().colorScheme.copyWith(
-              primary: highlightIconColor,
-            ),
-      ),
-      child: TextFormField(
-        cursorColor: NinjaConstant.secondary,
-        style: NinjaTextStyle.bodyLarge(color: textColor),
-        decoration: InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          hintStyle: NinjaTextStyle.bodyMedium(color: hintColor),
-          // collapsed does NOT have prefixIcon
-          prefixIcon: prefixIcon,
-          // fill only filled textfield
-          filled: filled,
-          fillColor: fillColor,
-          // different borders
-          focusedBorder: focusedBorder,
-          enabledBorder: enabledBorder,
-          border: border,
+    return SizedBox(
+      height: 44,
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          // override highlight prefixIcon color
+          colorScheme: ThemeData().colorScheme.copyWith(
+                primary: highlightIconColor,
+              ),
         ),
-        validator: validator,
-        controller: textEditingController,
-        obscureText: obscureText,
-        onChanged: onChanged,
-        inputFormatters: inputFormatters,
-        initialValue: initialValue,
-        keyboardType: keyboardType,
+        child: TextFormField(
+          cursorColor: NinjaConstant.secondary,
+          style: style,
+          decoration: InputDecoration(
+            hintText: hintText,
+            labelText: labelText,
+            hintStyle: hintStyle,
+            suffixIcon: suffixIcon,
+            // underlined does NOT have prefixIcon
+            prefixIcon: prefixIcon,
+            // fill only filled textfield
+            filled: filled,
+            fillColor: fillColor,
+            // different borders
+            focusedBorder: focusedBorder,
+            enabledBorder: enabledBorder,
+            border: border,
+            // padding for underlined input
+            contentPadding: contentPadding,
+            isDense: isDense,
+          ),
+          validator: validator,
+          controller: textEditingController,
+          obscureText: obscureText,
+          onChanged: onChanged,
+          inputFormatters: inputFormatters,
+          initialValue: initialValue,
+          keyboardType: keyboardType,
+        ),
       ),
     );
   }
