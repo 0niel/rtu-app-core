@@ -1,5 +1,7 @@
-import 'package:enough_platform_widgets/enough_platform_widgets.dart';
+import 'package:cupertino_list_tile/cupertino_list_tile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../themes/app_theme.dart';
@@ -85,23 +87,21 @@ class NinjaIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MergeSemantics(
-          child: PlatformWidget(
-            cupertino: (_, __) => CupertinoListTile(
-              dense: true,
-              border: const Border(bottom: BorderSide.none),
-              contentPadding: padding,
-              title: _buildTitle(),
-              trailing: _buildTrailing(),
-              onTap: () => onPressed,
-            ),
-            material: (_, __) => ListTile(
-              dense: true,
-              contentPadding: padding,
-              title: _buildTitle(),
-              trailing: _buildTrailing(),
-              onTap: () => onPressed,
-            ),
+        PlatformWidget(
+          cupertino: (_, __) => CupertinoListTile(
+            dense: true,
+            border: const Border(bottom: BorderSide.none),
+            contentPadding: padding,
+            title: _buildTitle(),
+            trailing: _buildTrailing(),
+            onTap: () => onPressed,
+          ),
+          material: (_, __) => ListTile(
+            dense: true,
+            contentPadding: padding,
+            title: _buildTitle(),
+            trailing: _buildTrailing(),
+            onTap: () => onPressed,
           ),
         ),
         Padding(

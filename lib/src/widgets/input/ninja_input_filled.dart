@@ -16,6 +16,7 @@ class NinjaInputFilled extends StatelessWidget {
     this.obscureText = false,
     this.onChanged,
     this.textEditingController,
+    this.suffixIcon,
   }) : super(key: key);
 
   final String? Function(String?)? validator;
@@ -27,6 +28,8 @@ class NinjaInputFilled extends StatelessWidget {
   final String? labelText;
   final bool obscureText;
   final TextEditingController? textEditingController;
+
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +66,8 @@ class NinjaInputFilled extends StatelessWidget {
       fillColor: NinjaConstant.grey50,
       style: NinjaTextStyle.bodyLarge(),
       hintStyle: NinjaTextStyle.bodyLarge(color: NinjaConstant.grey500),
+      contentPadding: EdgeInsets.zero,
+      suffixIcon: suffixIcon,
       prefixIcon: prefixIcon,
       validator: validator,
       textEditingController: textEditingController,

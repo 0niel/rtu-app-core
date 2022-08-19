@@ -1,6 +1,8 @@
-import 'package:enough_platform_widgets/enough_platform_widgets.dart';
+// import 'package:enough_platform_widgets/enough_platform_widgets.dart';
+import 'package:cupertino_list_tile/cupertino_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
 
 class NinjaSwitchButton extends StatefulWidget {

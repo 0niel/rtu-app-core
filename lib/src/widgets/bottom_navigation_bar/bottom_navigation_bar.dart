@@ -1,4 +1,3 @@
-import 'package:enough_platform_widgets/enough_platform_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/src/themes/themes.dart';
@@ -152,14 +151,14 @@ class _NinjaBottomNavigationBarState extends State<NinjaBottomNavigationBar>
       );
 
       list.add(
-        PlatformInkWell(
-          onTap: () {
+        PlatformIconButton(
+          onPressed: () {
             widget.items[i].onPressed(i);
             setState(() {
               _currentIndex = i;
             });
           },
-          child: item,
+          icon: item,
         ),
       );
     }
