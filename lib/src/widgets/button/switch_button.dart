@@ -59,7 +59,7 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
           child: Icon(
             widget.icon,
             size: 16,
-            color: AppTheme.theme.colorScheme.onBackground,
+            color: NinjaAppTheme.theme.colorScheme.onBackground,
           ),
         ),
         const SizedBox(width: 14),
@@ -98,7 +98,7 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
               left: widget.padding.left, right: widget.padding.right),
           child: Divider(
             height: 1,
-            color: AppTheme.theme.dividerColor,
+            color: NinjaAppTheme.theme.dividerColor,
           ),
         ),
       ],

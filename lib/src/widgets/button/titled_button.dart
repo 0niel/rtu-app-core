@@ -72,7 +72,7 @@ class NinjaTitledButton extends StatelessWidget {
           padding: EdgeInsets.only(left: padding.left, right: padding.right),
           child: Divider(
             height: 1,
-            color: AppTheme.theme.dividerColor,
+            color: NinjaAppTheme.theme.dividerColor,
           ),
         ),
       ],

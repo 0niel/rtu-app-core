@@ -22,8 +22,8 @@ class MarkersBuilder extends StatelessWidget {
                 height: 4,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color:
-                      AppTheme.theme.colorScheme.secondary, // TODO: change this
+                  color: NinjaAppTheme
+                      .theme.colorScheme.secondary, // TODO: change this
                 ),
               ),
             ),

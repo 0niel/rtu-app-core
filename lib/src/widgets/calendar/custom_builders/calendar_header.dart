@@ -193,7 +193,7 @@ class _CalendarWeeksHeader extends StatelessWidget {
                         .format(day)
                         .substring(1)
                         .replaceAll(RegExp(r' г.'), ' '),
-                color: AppTheme.theme.colorScheme.onBackground,
+                color: NinjaAppTheme.theme.colorScheme.onBackground,
                 fontWeight: 600,
               ),
               const SizedBox(width: 5.50),
@@ -208,7 +208,7 @@ class _CalendarWeeksHeader extends StatelessWidget {
               const SizedBox(width: 5.50),
               NinjaText.bodyMedium(
                 "12 неделя",
-                color: AppTheme.theme.colorScheme.onBackground,
+                color: NinjaAppTheme.theme.colorScheme.onBackground,
                 fontWeight: 600,
               ),
             ],

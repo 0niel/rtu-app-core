@@ -4,12 +4,12 @@ import 'package:rtu_app_core/src/themes/text_style.dart';
 
 import 'constant.dart';
 
-enum AppThemeType { light, dark }
+enum NinjaThemeType { light, dark }
 
-class AppTheme {
-  static AppThemeType defaultThemeType = AppThemeType.light;
+class NinjaAppTheme {
+  static NinjaThemeType defaultThemeType = NinjaThemeType.light;
 
-  static ThemeData theme = AppTheme.getThemeFromThemeMode();
+  static ThemeData theme = NinjaAppTheme.getThemeFromThemeMode();
 
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
@@ -290,25 +290,25 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
   );
 
-  static ThemeData getThemeFromThemeMode({AppThemeType? themeType}) {
+  static ThemeData getThemeFromThemeMode({NinjaThemeType? themeType}) {
     themeType ??= defaultThemeType;
 
-    if (themeType == AppThemeType.light) {
+    if (themeType == NinjaThemeType.light) {
       return lightTheme;
     }
     return darkTheme;
   }
 
-  static void updateThemeData(AppThemeType themeType, ThemeData themeData) {
-    if (themeType == AppThemeType.light) {
+  static void updateThemeData(NinjaThemeType themeType, ThemeData themeData) {
+    if (themeType == NinjaThemeType.light) {
       lightTheme = themeData;
     } else {
       darkTheme = themeData;
     }
   }
 
-  static void changeThemeType(AppThemeType? themeType) {
-    defaultThemeType = themeType ?? AppThemeType.light;
-    theme = AppTheme.getThemeFromThemeMode();
+  static void changeThemeType(NinjaThemeType? themeType) {
+    defaultThemeType = themeType ?? NinjaThemeType.light;
+    theme = NinjaAppTheme.getThemeFromThemeMode();
   }
 }
