@@ -43,7 +43,7 @@ class NinjaIconButton extends StatelessWidget {
           padding: EdgeInsets.only(left: padding.left, right: padding.right),
           child: Divider(
             height: 1,
-            color: AppTheme.theme.dividerColor,
+            color: NinjaAppTheme.theme.dividerColor,
           ),
         ),
       ],
@@ -63,7 +63,7 @@ class NinjaIconButton extends StatelessWidget {
           child: Icon(
             icon,
             size: 16,
-            color: AppTheme.theme.colorScheme.onBackground,
+            color: NinjaAppTheme.theme.colorScheme.onBackground,
           ),
         ),
         const SizedBox(width: 14),
@@ -100,7 +100,7 @@ class NinjaIconButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 4),
       child: SvgPicture.asset(
-        color: NinjaConstant.grey400,
+        color: NinjaAppTheme.theme.dividerColor,
         width: 16,
         height: 16,
         'assets/icons/arrow-right.svg',

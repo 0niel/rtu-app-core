@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
@@ -59,7 +58,7 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
           child: Icon(
             widget.icon,
             size: 16,
-            color: AppTheme.theme.colorScheme.onBackground,
+            color: NinjaAppTheme.theme.colorScheme.onBackground,
           ),
         ),
         const SizedBox(width: 14),
@@ -96,7 +95,7 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
           ),
           child: Divider(
             height: 1,
-            color: AppTheme.theme.dividerColor,
+            color: NinjaAppTheme.theme.dividerColor,
           ),
         ),
       ],

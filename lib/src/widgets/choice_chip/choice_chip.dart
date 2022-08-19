@@ -11,7 +11,7 @@ class NinjaChoiceChip extends StatefulWidget {
     this.oneChoice = false,
   }) : super(key: key);
 
-  final Function(List<String> selectedChoices) onPressed;
+  final Function(List<int> selectedChoices) onPressed;
   final List<String> choicesList;
   final bool oneChoice;
 
@@ -20,13 +20,13 @@ class NinjaChoiceChip extends StatefulWidget {
 }
 
 class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
-  List<String> selectedChoices = [];
+  List<int> selected = [];
 
   @override
   Widget build(BuildContext context) {
     List<Widget> choices = [];
 
-    for (var item in widget.choicesList) {
+    for (var i = 0; i < widget.choicesList.length; i++) {
       choices.add(Container(
         padding: const EdgeInsets.all(8),
         child: Material(
@@ -37,8 +37,8 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
             shape: RoundedRectangleBorder(
               borderRadius: const BorderRadius.all(Radius.circular(6)),
               side: BorderSide(
-                color: selectedChoices.contains(item)
-                    ? AppTheme.theme.colorScheme.secondary
+                color: selected.contains(i)
+                    ? NinjaAppTheme.theme.colorScheme.secondary
                     : const Color(0xFFEDEDED),
                 width: 1,
               ),
@@ -50,35 +50,30 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
             selectedColor: Colors.transparent,
             selectedShadowColor: Colors.transparent,
             label: NinjaText.bodySmall(
-              item,
-              color: selectedChoices.contains(item)
-                  ? AppTheme.theme.colorScheme.secondary
+              widget.choicesList[i],
+              color: selected.contains(i)
+                  ? NinjaAppTheme.theme.colorScheme.secondary
                   : const Color(0xFF696969),
             ),
-            selected: selectedChoices.contains(item),
-            onSelected: (selected) {
+            selected: selected.contains(i),
+            onSelected: (isSelected) {
               setState(() {
                 if (widget.oneChoice) {
-                  if (selectedChoices.contains(item) == false) {
-                    selectedChoices.clear();
-                    selectedChoices.add(item);
+                  if (selected.contains(i) == false) {
+                    selected.clear();
+                    selected.add(i);
                   }
                 } else {
-                  selectedChoices.contains(item)
-                      ? selectedChoices.remove(item)
-                      : selectedChoices.add(item);
+                  selected.contains(i) ? selected.remove(i) : selected.add(i);
                 }
               });
-              widget.onPressed(selectedChoices);
+              widget.onPressed(selected);
             },
           ),
         ),
       ));
     }
 
-    return Container(
-      padding: const EdgeInsets.all(24),
-      child: Wrap(children: choices),
-    );
+    return Wrap(children: choices);
   }
 }
