@@ -70,7 +70,7 @@ class NinjaTextStyle {
     double wordSpacing = 0,
     double? fontSize,
   }) {
-    color ??= AppTheme.theme.colorScheme.onBackground;
+    color ??= NinjaAppTheme.theme.colorScheme.onBackground;
 
     if (otherTextStyle != null) {
       return otherTextStyle.copyWith(

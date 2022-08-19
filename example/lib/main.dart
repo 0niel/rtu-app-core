@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
         ],
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        material: (_, __) => MaterialAppData(theme: AppTheme.theme),
+        material: (_, __) => MaterialAppData(theme: NinjaAppTheme.theme),
         cupertino: (_, __) => CupertinoAppData(
-          theme: AppTheme.cupertinoLightTheme,
+          theme: NinjaAppTheme.cupertinoLightTheme,
         ),
         home: const MyHomePage(title: 'Flutter Demo Home Page'),
       ),
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
             right: 0,
             bottom: 0,
             child: NinjaBottomNavigationBar(
-              activeItemColor: AppTheme.theme.colorScheme.secondary,
+              activeItemColor: NinjaAppTheme.theme.colorScheme.secondary,
               itemColor: const Color(0xFFB8B8B8),
               initialIndex: 0,
               items: [

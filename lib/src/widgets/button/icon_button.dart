@@ -35,7 +35,7 @@ class NinjaIconButton extends StatelessWidget {
           child: Icon(
             icon,
             size: 16,
-            color: AppTheme.theme.colorScheme.onBackground,
+            color: NinjaAppTheme.theme.colorScheme.onBackground,
           ),
         ),
         const SizedBox(width: 14),
@@ -108,7 +108,7 @@ class NinjaIconButton extends StatelessWidget {
           padding: EdgeInsets.only(left: padding.left, right: padding.right),
           child: Divider(
             height: 1,
-            color: AppTheme.theme.dividerColor,
+            color: NinjaAppTheme.theme.dividerColor,
           ),
         ),
       ],

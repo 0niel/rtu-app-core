@@ -38,7 +38,7 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
               borderRadius: const BorderRadius.all(Radius.circular(6)),
               side: BorderSide(
                 color: selectedChoices.contains(item)
-                    ? AppTheme.theme.colorScheme.secondary
+                    ? NinjaAppTheme.theme.colorScheme.secondary
                     : const Color(0xFFEDEDED),
                 width: 1,
               ),
@@ -52,7 +52,7 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
             label: NinjaText.bodySmall(
               item,
               color: selectedChoices.contains(item)
-                  ? AppTheme.theme.colorScheme.secondary
+                  ? NinjaAppTheme.theme.colorScheme.secondary
                   : const Color(0xFF696969),
             ),
             selected: selectedChoices.contains(item),
