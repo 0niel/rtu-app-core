@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
 import 'package:unicons/unicons.dart';
 
@@ -73,47 +74,56 @@ class _ItemBuild<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: const BorderRadius.all(
-        Radius.circular(12),
-      ),
-      onTap: () => onTap(),
-      child: Ink(
-        decoration: BoxDecoration(
-          color: active ? Theme.of(context).canvasColor : NinjaConstant.grey50,
-          border: Border.all(
-            color: active ? NinjaConstant.secondary : NinjaConstant.grey50,
-          ),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(12),
-          ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12.0),
+      child: NinjaButton.text(
+        padding: const EdgeInsets.all(0),
+        // onPressed: onPressed,
+        elevation: 0,
+        splashColor: Theme.of(context).colorScheme.secondary.withAlpha(20),
+        onPressed: () => onTap(),
+        // This option DOES NOT WORK. So use ClipRRect above
+        borderRadius: const BorderRadius.all(
+          Radius.circular(12),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            builder(
-              context,
-              value,
+        child: Ink(
+          decoration: BoxDecoration(
+            color:
+                active ? Theme.of(context).canvasColor : NinjaConstant.grey50,
+            border: Border.all(
+              color: active ? NinjaConstant.secondary : NinjaConstant.grey50,
             ),
-            active
-                ? const CircleAvatar(
-                    radius: 10,
-                    backgroundColor: NinjaConstant.secondary,
-                    child: Icon(
-                      UniconsLine.check,
-                      size: 15,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              builder(
+                context,
+                value,
+              ),
+              active
+                  ? const CircleAvatar(
+                      radius: 10,
+                      backgroundColor: NinjaConstant.secondary,
+                      child: Icon(
+                        UniconsLine.check,
+                        size: 15,
+                      ),
+                    )
+                  : Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: NinjaConstant.grey500),
+                      ),
                     ),
-                  )
-                : Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: NinjaConstant.grey500),
-                    ),
-                  ),
-          ],
+            ],
+          ),
         ),
       ),
     );

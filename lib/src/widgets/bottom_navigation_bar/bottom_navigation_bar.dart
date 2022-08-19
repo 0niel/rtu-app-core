@@ -152,6 +152,7 @@ class _NinjaBottomNavigationBarState extends State<NinjaBottomNavigationBar>
 
       list.add(
         PlatformIconButton(
+          padding: EdgeInsets.zero,
           onPressed: () {
             widget.items[i].onPressed(i);
             setState(() {
