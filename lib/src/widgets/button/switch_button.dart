@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
 
 class NinjaSwitchButton extends StatefulWidget {
@@ -34,7 +34,7 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
   Widget _buildSwitch() {
     return ValueListenableBuilder(
       valueListenable: _switchValueNotifier,
-      builder: (context, hasError, child) => PlatformSwitch(
+      builder: (context, hasError, child) => CupertinoSwitch(
         activeColor: Theme.of(context).colorScheme.secondary,
         value: _switchValueNotifier.value,
         onChanged: (value) {
