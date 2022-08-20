@@ -1,4 +1,3 @@
-import 'package:enough_platform_widgets/enough_platform_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
@@ -10,7 +9,7 @@ class NinjaSwitchButton extends StatefulWidget {
     required this.text,
     required this.onChanged,
     required this.initialValue,
-    this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+    this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
   }) : super(key: key);
 
   final IconData icon;
@@ -72,30 +71,28 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MergeSemantics(
-          child: PlatformWidget(
-            cupertino: (_, __) => CupertinoListTile(
-              dense: true,
-              border: const Border(bottom: BorderSide.none),
-              contentPadding: widget.padding,
-              title: _buildTitle(),
-              trailing: _buildSwitch(),
-              onTap: () =>
-                  _switchValueNotifier.value = !_switchValueNotifier.value,
-            ),
-            material: (_, __) => ListTile(
-              dense: true,
-              contentPadding: widget.padding,
-              title: _buildTitle(),
-              trailing: _buildSwitch(),
-              onTap: () =>
-                  _switchValueNotifier.value = !_switchValueNotifier.value,
+        NinjaButton.text(
+          padding: widget.padding,
+          elevation: 0,
+          splashColor: Theme.of(context).colorScheme.secondary.withAlpha(20),
+          onPressed: () =>
+              _switchValueNotifier.value = !_switchValueNotifier.value,
+          child: Padding(
+            padding: EdgeInsets.zero,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildTitle(),
+                _buildSwitch(),
+              ],
             ),
           ),
         ),
         Padding(
           padding: EdgeInsets.only(
-              left: widget.padding.left, right: widget.padding.right),
+            left: widget.padding.left,
+            right: widget.padding.right,
+          ),
           child: Divider(
             height: 1,
             color: NinjaAppTheme.theme.dividerColor,

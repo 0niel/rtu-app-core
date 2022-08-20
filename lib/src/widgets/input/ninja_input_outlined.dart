@@ -16,6 +16,7 @@ class NinjaInputOutlined extends StatelessWidget {
     this.obscureText = false,
     this.onChanged,
     this.textEditingController,
+    this.suffixIcon,
   }) : super(key: key);
 
   final String? Function(String?)? validator;
@@ -27,12 +28,14 @@ class NinjaInputOutlined extends StatelessWidget {
   final String? labelText;
   final bool obscureText;
   final TextEditingController? textEditingController;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
 
-    final textColor = themeData.colorScheme.onBackground;
+    final textColor =
+        NinjaTextStyle.bodyLarge().color ?? themeData.colorScheme.onBackground;
 
     final prefixIcon = Icon(
       UniconsLine.search,
@@ -40,7 +43,7 @@ class NinjaInputOutlined extends StatelessWidget {
     );
 
     return NinjaInputBasic(
-      highlightIconColor: themeData.colorScheme.onBackground,
+      highlightIconColor: textColor,
       border: NinjaInputThemes.fullBorder(context).border,
       focusedBorder: NinjaInputThemes.fullBorder(context).focusedBorder,
       enabledBorder: NinjaInputThemes.fullBorder(context).enabledBorder,
@@ -49,6 +52,7 @@ class NinjaInputOutlined extends StatelessWidget {
       style: NinjaTextStyle.bodyLarge(fontWeight: 500),
       hintStyle: NinjaTextStyle.bodyLarge(fontWeight: 500),
       contentPadding: EdgeInsets.zero,
+      suffixIcon: suffixIcon,
       prefixIcon: prefixIcon,
       validator: validator,
       textEditingController: textEditingController,
