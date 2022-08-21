@@ -9,11 +9,16 @@ class NinjaChoiceChip extends StatefulWidget {
     required this.onPressed,
     required this.choicesList,
     this.oneChoice = false,
+    this.spacing,
+    this.runSpacing,
   }) : super(key: key);
 
   final Function(List<int> selectedChoices) onPressed;
   final List<String> choicesList;
   final bool oneChoice;
+
+  final double? spacing;
+  final double? runSpacing;
 
   @override
   State<NinjaChoiceChip> createState() => _NinjaChoiceChipState();
@@ -27,9 +32,8 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
     List<Widget> choices = [];
 
     for (var i = 0; i < widget.choicesList.length; i++) {
-      choices.add(Container(
-        padding: const EdgeInsets.all(8),
-        child: Material(
+      choices.add(
+        Material(
           child: ChoiceChip(
             backgroundColor: Colors.white,
             shadowColor: Colors.transparent,
@@ -71,9 +75,13 @@ class _NinjaChoiceChipState extends State<NinjaChoiceChip> {
             },
           ),
         ),
-      ));
+      );
     }
 
-    return Wrap(children: choices);
+    return Wrap(
+      spacing: widget.spacing ?? 10,
+      runSpacing: widget.runSpacing ?? 8,
+      children: choices,
+    );
   }
 }
