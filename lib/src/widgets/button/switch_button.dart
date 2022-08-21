@@ -9,7 +9,7 @@ class NinjaSwitchButton extends StatefulWidget {
     required this.text,
     required this.onChanged,
     required this.initialValue,
-    this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+    this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
   }) : super(key: key);
 
   final IconData icon;
