@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:rtu_app_core/rtu_app_core.dart';
 
 class NinjaSwitchButton extends StatefulWidget {
@@ -10,6 +11,7 @@ class NinjaSwitchButton extends StatefulWidget {
     required this.onChanged,
     required this.initialValue,
     this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+    this.dividerColor,
   }) : super(key: key);
 
   final IconData icon;
@@ -17,6 +19,7 @@ class NinjaSwitchButton extends StatefulWidget {
   final Function(bool) onChanged;
   final bool initialValue;
   final EdgeInsets padding;
+  final Color? dividerColor;
 
   @override
   State<NinjaSwitchButton> createState() => _NinjaSwitchButtonState();
@@ -88,15 +91,11 @@ class _NinjaSwitchButtonState extends State<NinjaSwitchButton> {
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: widget.padding.left,
-            right: widget.padding.right,
-          ),
-          child: Divider(
-            height: 1,
-            color: NinjaAppTheme.theme.dividerColor,
-          ),
+        Divider(
+          height: 1,
+          indent: widget.padding.left,
+          endIndent: widget.padding.right,
+          color: widget.dividerColor ?? NinjaAppTheme.theme.dividerColor,
         ),
       ],
     );

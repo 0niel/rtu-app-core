@@ -65,8 +65,11 @@ class NinjaAppTheme {
         foregroundColor: const Color(0xffeeeeee)),
 
     /// Divider Theme
-    dividerTheme:
-        const DividerThemeData(color: NinjaConstant.grey200, thickness: 1),
+    dividerTheme: const DividerThemeData(
+      color: NinjaConstant.grey200,
+      thickness: 0.0,
+      space: 1,
+    ),
     dividerColor: NinjaConstant.grey200,
 
     /// Bottom AppBar Theme
