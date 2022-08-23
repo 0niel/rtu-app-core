@@ -3,14 +3,16 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
 import 'package:unicons/unicons.dart';
 
-class NinjaVerticalSelectBuilder<T> extends StatefulWidget {
-  const NinjaVerticalSelectBuilder({
+class NinjaSelector<T> extends StatefulWidget {
+  const NinjaSelector({
     Key? key,
     required this.values,
     required this.builder,
     required this.onChanged,
+    this.direction,
   }) : super(key: key);
 
+  final Axis? direction;
   final List<T> values;
   final Widget Function(BuildContext, dynamic) builder;
   final void Function(dynamic) onChanged;
@@ -20,7 +22,7 @@ class NinjaVerticalSelectBuilder<T> extends StatefulWidget {
   _State<T> createState() => _State<T>();
 }
 
-class _State<T> extends State<NinjaVerticalSelectBuilder> {
+class _State<T> extends State<NinjaSelector> {
   late T chosen;
 
   @override
@@ -36,26 +38,37 @@ class _State<T> extends State<NinjaVerticalSelectBuilder> {
     });
   }
 
+  List<Widget> _buildItems(Axis direction) {
+    return List.generate(widget.values.length, (index) {
+      final value = widget.values[index];
+      final isLastElement = index == widget.values.length - 1;
+      final double bottomPadding =
+          isLastElement || direction != Axis.vertical ? 0 : 10;
+      final double rightPadding =
+          isLastElement || direction != Axis.horizontal ? 0 : 5;
+      return Padding(
+        padding: EdgeInsets.only(bottom: bottomPadding, right: rightPadding),
+        child: _ItemBuild<T>(
+          onTap: () => _onChoose(value),
+          builder: widget.builder,
+          value: value,
+          active: value == chosen,
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: widget.values.length,
-        itemBuilder: (context, index) {
-          final value = widget.values[index];
-
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-            child: _ItemBuild<T>(
-              onTap: () => _onChoose(value),
-              builder: widget.builder,
-              value: value,
-              active: value == chosen,
-            ),
-          );
-        });
+    if ((widget.direction ?? Axis.vertical) == Axis.vertical) {
+      return Column(
+        children: _buildItems(Axis.vertical),
+      );
+    }
+    return Row(
+      children:
+          _buildItems(Axis.horizontal).map((e) => Expanded(child: e)).toList(),
+    );
   }
 }
 

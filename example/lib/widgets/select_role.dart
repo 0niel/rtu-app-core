@@ -6,7 +6,8 @@ class SelectRoleExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NinjaVerticalSelectBuilder<_Role>(
+    return NinjaSelector<_Role>(
+      direction: Axis.vertical,
       onChanged: (role) {
         print(role.toString());
       },

@@ -385,7 +385,10 @@ class _HomeScreenState extends State<_HomeScreen> {
               child: PasswordInput(),
             ),
             const SizedBox(height: 24),
-            const SelectRoleExample(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: SelectRoleExample(),
+            ),
             const SizedBox(height: 24),
             NinjaTitledButton(
               title: 'Наш телеграм',
