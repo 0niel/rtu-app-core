@@ -153,7 +153,7 @@ class NinjaButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget button;
     final Color bgColor =
-        backgroundColor ?? Theme.of(context).colorScheme.primary;
+        backgroundColor ?? Theme.of(context).colorScheme.onPrimary;
     if (buttonType == NinjaButtonType.elevated) {
       button = PlatformElevatedButton(
         onPressed: onPressed,
