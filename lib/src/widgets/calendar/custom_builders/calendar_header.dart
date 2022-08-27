@@ -27,8 +27,8 @@ class CalendarHeader extends StatelessWidget {
         const SizedBox(height: 11),
         _CalendarWeeksHeader(day: day, pageController: pageController),
         AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeIn,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
           transform: Matrix4.translationValues(
             0,
             format == CalendarFormat.month ? 5 : 0,
