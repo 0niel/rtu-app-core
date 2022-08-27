@@ -16,6 +16,8 @@ class NinjaInputUnderlined extends StatelessWidget {
     this.onChanged,
     this.textEditingController,
     this.suffixIcon,
+    this.style,
+    this.hintStyle,
   }) : super(key: key);
 
   final String? Function(String?)? validator;
@@ -28,6 +30,8 @@ class NinjaInputUnderlined extends StatelessWidget {
   final bool obscureText;
   final TextEditingController? textEditingController;
   final Widget? suffixIcon;
+  final TextStyle? style;
+  final TextStyle? hintStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +45,9 @@ class NinjaInputUnderlined extends StatelessWidget {
       filled: false,
       fillColor: null,
       prefixIcon: null,
-      style: NinjaTextStyle.bodyLarge(),
-      hintStyle: NinjaTextStyle.bodyLarge(color: NinjaConstant.grey400),
+      style: style ?? NinjaTextStyle.bodyLarge(),
+      hintStyle:
+          hintStyle ?? NinjaTextStyle.bodyLarge(color: NinjaConstant.grey400),
       contentPadding: const EdgeInsets.symmetric(vertical: 16),
       isDense: true,
       suffixIcon: suffixIcon,
