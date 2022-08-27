@@ -17,13 +17,31 @@ class NinjaTableCalendar extends StatefulWidget {
     required this.lastCalendarDay,
     this.eventLoader,
     this.onDaySelected,
+    this.onHeaderTapped,
+    this.onHeaderLongPressed,
+    this.onPageChanged,
+    this.onFormatChanged,
+    this.holidayPredicate,
+    this.onDayLongPressed,
   }) : super(key: key);
 
   final DateTime firstCalendarDay;
   final DateTime lastCalendarDay;
 
-  final List<Object?> Function(DateTime)? eventLoader;
+  final Function(DateTime)? onHeaderTapped;
+  final Function(DateTime)? onHeaderLongPressed;
+  final Function(CalendarFormat)? onFormatChanged;
+
+  /// Called whenever currently visible calendar page is changed.
+  final Function(DateTime)? onPageChanged;
+
+  /// Function that assigns a list of events to a specified day.
+  final List<dynamic> Function(DateTime)? eventLoader;
+
+  /// Function deciding whether given day is treated as a holiday.
+  final bool Function(DateTime)? holidayPredicate;
   final Function(DateTime, DateTime)? onDaySelected;
+  final void Function(DateTime, DateTime)? onDayLongPressed;
 
   @override
   State<NinjaTableCalendar> createState() => _NinjaTableCalendarState();
@@ -124,6 +142,7 @@ class _NinjaTableCalendarState extends State<NinjaTableCalendar> {
       onPageChanged: (focusedDay) {
         // No need to call `setState()` here
         _focusedDay = _validateDayInRange(focusedDay);
+        widget.onPageChanged?.call(_focusedDay);
       },
       onFormatChanged: (format) {
         if (_calendarFormat != format) {
@@ -131,10 +150,16 @@ class _NinjaTableCalendarState extends State<NinjaTableCalendar> {
           setState(() {
             _calendarFormat = format;
           });
+          widget.onFormatChanged?.call(format);
         }
       },
-      onHeaderTapped: (date) {},
-      onHeaderLongPressed: (date) {},
+      onDayLongPressed: (selectedDay, focusedDay) =>
+          widget.onDayLongPressed?.call(selectedDay, focusedDay),
+      holidayPredicate: (day) => widget.holidayPredicate != null
+          ? widget.holidayPredicate!(day)
+          : false,
+      onHeaderTapped: (date) => widget.onHeaderTapped?.call(date),
+      onHeaderLongPressed: (date) => widget.onHeaderLongPressed?.call(date),
       firstDay: widget.firstCalendarDay,
       lastDay: widget.lastCalendarDay,
       focusedDay: _focusedDay,
