@@ -7,7 +7,7 @@ class SelectRoleExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NinjaSelector<_Role>(
-      direction: Axis.vertical,
+      direction: Axis.horizontal,
       onChanged: (role) {
         print(role.toString());
       },
@@ -23,7 +23,7 @@ class SelectRoleExample extends StatelessWidget {
               color: NinjaConstant.grey400,
             ),
             NinjaText.bodyLarge(
-              'Я ${value == _Role.student ? 'Студент' : 'Преподаватель'}',
+              'Я ${value == _Role.student ? 'студент' : 'преподаватель'}',
               fontWeight: 500,
             ),
           ],

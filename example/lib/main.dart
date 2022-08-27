@@ -329,8 +329,8 @@ class _HomeScreenState extends State<_HomeScreen> {
                   const SizedBox(height: 24),
                   NinjaTextButton(
                       text: '+ Добавить комментарии', onPressed: () {}),
-                  NinjaChoiceChip(
-                    onPressed: (selected) {
+                  NinjaToggle(
+                    onSelected: (selected) {
                       print(selected);
                     },
                     choicesList: categoryList,
@@ -355,8 +355,8 @@ class _HomeScreenState extends State<_HomeScreen> {
               text: 'Преподаватели',
               onPressed: () {},
             ),
-            NinjaChoiceChip(
-              onPressed: (selected) {
+            NinjaToggle(
+              onSelected: (selected) {
                 print(selected);
               },
               oneChoice: true,
