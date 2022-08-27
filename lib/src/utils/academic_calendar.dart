@@ -1,22 +1,34 @@
-// ignore: depend_on_referenced_packages
-import 'package:clock/clock.dart';
 import 'package:intl/intl.dart';
 
 class NinjaAcademicCalendar {
-  // TODO: download value from a remote server
+  // Constructor
+  NinjaAcademicCalendar({
+    required this.maxSemesterWeeks,
+    required this.firstSemesterStart,
+    required this.secondSemesterStart,
+  })  : assert(maxSemesterWeeks > 0),
+        assert(firstSemesterStart.isBefore(secondSemesterStart)) {
+    _semesterStartController =
+        _SemesterStartController(firstSemesterStart, secondSemesterStart);
+  }
+
   /// Maximum number of academic weeks per semester
-  static int maxWeekInSemester = 17;
+  final int maxSemesterWeeks;
+
+  final DateTime firstSemesterStart;
+  final DateTime secondSemesterStart;
+
+  late final _SemesterStartController _semesterStartController;
 
   /// Returns the current day of the week, where 1 is Mon, 7 is Sun
-  static int getCurrentDayOfWeek({final Clock clock = const Clock()}) {
-    return clock.now().weekday;
+  int getCurrentDayOfWeek() {
+    return DateTime.now().weekday;
   }
 
   /// Returns the number of the current week using the current date
-  static int getCurrentWeek(
-      {DateTime? mCurrentDate, final Clock clock = const Clock()}) {
-    DateTime currentDate = mCurrentDate ?? clock.now();
-    DateTime startDate = getSemesterStart(mCurrentDate: currentDate);
+  int getAcademicWeek({DateTime? date}) {
+    DateTime currentDate = date ?? DateTime.now();
+    DateTime startDate = getSemesterStart(date: currentDate);
 
     // If the semester has not begun, return the beginning
     if (currentDate.isBefore(startDate)) {
@@ -33,10 +45,10 @@ class NinjaAcademicCalendar {
   }
 
   /// Returns the list of dates by [week] number
-  static List<DateTime> getDaysInWeek(int week, [DateTime? mCurrentDate]) {
+  List<DateTime> getDaysInWeek(int week, [DateTime? date]) {
     List<DateTime> daysInWeek = [];
 
-    DateTime semStart = getSemesterStart(mCurrentDate: mCurrentDate);
+    DateTime semStart = getSemesterStart(date: date);
 
     var firstDayOfWeek =
         semStart.subtract(Duration(days: semStart.weekday - 1));
@@ -53,33 +65,30 @@ class NinjaAcademicCalendar {
 
   /// Get the start date of the semester
   ///
-  /// [mCurrentDate] is the date for which
+  /// [date] is the date for which
   /// the beginning of the semester will be calculated.
-  static DateTime getSemesterStart(
-      {DateTime? mCurrentDate, final Clock clock = const Clock()}) {
-    return _CurrentSemesterStart.getCurrentSemesterStart(
-        mCurrentDate: mCurrentDate, clock: clock);
+  DateTime getSemesterStart({DateTime? date}) {
+    return _semesterStartController.getCurrentSemesterStart(date: date);
   }
 
   /// Get the last date of the semester
-  static DateTime getSemesterLastDay(
-      {DateTime? mCurrentDate, final Clock clock = const Clock()}) {
+  DateTime getSemesterLastDay({DateTime? date}) {
     return getDaysInWeek(
-            maxWeekInSemester,
-            _CurrentSemesterStart.getCurrentSemesterStart(
-                mCurrentDate: mCurrentDate, clock: clock))
-        .last;
+        maxSemesterWeeks,
+        _semesterStartController.getCurrentSemesterStart(
+          date: date,
+        )).last;
   }
 
   /// Calculates number of weeks for a given year as per https://en.wikipedia.org/wiki/ISO_week_date#Weeks_per_year
-  static int _numOfWeeks(int year) {
+  int _numOfWeeks(int year) {
     DateTime dec28 = DateTime(year, 12, 28);
     int dayOfDec28 = int.parse(DateFormat("D").format(dec28));
     return ((dayOfDec28 - dec28.weekday + 10) / 7).floor();
   }
 
   /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
-  static int _weekNumber(DateTime date) {
+  int _weekNumber(DateTime date) {
     int dayOfYear = int.parse(DateFormat("D").format(date));
     int woy = ((dayOfYear - date.weekday + 10) / 7).floor();
     if (woy < 1) {
@@ -92,9 +101,14 @@ class NinjaAcademicCalendar {
 }
 
 /// Get the date when the semester begins
-abstract class _CurrentSemesterStart {
+class _SemesterStartController {
+  _SemesterStartController(this.firstSemesterStart, this.secondSemesterStart);
+
+  final DateTime firstSemesterStart;
+  final DateTime secondSemesterStart;
+
   /// Get the first Monday of the month from which the current semester begins
-  static DateTime _getFirstMondayOfMonth(int year, int month) {
+  DateTime _getFirstMondayOfMonth(int year, int month) {
     var firstOfMonth = DateTime(year, month, 1);
     var firstMonday = firstOfMonth.add(
         Duration(days: (7 - (firstOfMonth.weekday - DateTime.monday)) % 7));
@@ -104,7 +118,7 @@ abstract class _CurrentSemesterStart {
   /// Adjust the start date of the semester
   /// If the selected day is a day off, take the first Monday of the month,
   /// Otherwise the selected day is chosen correctly already
-  static DateTime _getCorrectedDate(DateTime date) {
+  DateTime _getCorrectedDate(DateTime date) {
     if (date.weekday == DateTime.saturday || date.weekday == DateTime.sunday) {
       return _getFirstMondayOfMonth(date.year, date.month);
     } else {
@@ -115,22 +129,28 @@ abstract class _CurrentSemesterStart {
   /// Get the expected start date of the semester.
   /// For the first semester it is September 1
   /// For the second semester it is February 9th
-  static DateTime _getExpectedSemesterStart(DateTime currentDate) {
-    // TODO: download dates from a remote server
+  DateTime _getExpectedSemesterStart(DateTime currentDate) {
     if (currentDate.month >= DateTime.september) {
-      return DateTime(currentDate.year, DateTime.september, 1);
+      return firstSemesterStart;
     } else {
-      return DateTime(currentDate.year, DateTime.february, 9);
+      return secondSemesterStart;
     }
   }
 
   /// Get the start date of the current semester
-  static DateTime getCurrentSemesterStart(
-      {DateTime? mCurrentDate, final Clock clock = const Clock()}) {
-    DateTime currentDate = mCurrentDate ?? clock.now();
+  DateTime getCurrentSemesterStart({
+    DateTime? date,
+  }) {
+    DateTime currentDate = date ?? DateTime.now();
     // Expected start date of the semester
     DateTime expectedStart = _getExpectedSemesterStart(currentDate);
     // Adjust in case it falls on a day off
     return _getCorrectedDate(expectedStart);
   }
 }
+
+final defaultAcademicCalendar = NinjaAcademicCalendar(
+  maxSemesterWeeks: 17,
+  firstSemesterStart: DateTime(DateTime.now().year, DateTime.september, 1),
+  secondSemesterStart: DateTime(DateTime.now().year + 1, DateTime.february, 8),
+);
