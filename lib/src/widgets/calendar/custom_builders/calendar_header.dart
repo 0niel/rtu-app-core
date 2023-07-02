@@ -36,9 +36,9 @@ class CalendarHeader extends StatelessWidget {
           ),
           child: Column(children: [
             if (format != CalendarFormat.month)
-              Column(
+              const Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   SizedBox(height: 24),
                   Divider(
                     color: NinjaConstant.grey200,

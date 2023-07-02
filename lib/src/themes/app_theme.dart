@@ -12,12 +12,10 @@ class NinjaAppTheme {
   static ThemeData theme = NinjaAppTheme.getThemeFromThemeMode();
 
   static ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.light,
 
     primaryColor: NinjaConstant.primary,
-
-    /// Scaffold and Background color
-    backgroundColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
     canvasColor: Colors.transparent,
 
@@ -38,21 +36,6 @@ class NinjaAppTheme {
     /// Card Theme
     cardTheme: const CardTheme(color: Color(0xfff0f0f0)),
     cardColor: const Color(0xfff0f0f0),
-
-    /// Colorscheme
-    colorScheme: const ColorScheme(
-      brightness: Brightness.light,
-      primary: NinjaConstant.primary,
-      onPrimary: NinjaConstant.primaryBlack,
-      secondary: NinjaConstant.secondary,
-      onSecondary: Colors.white,
-      error: NinjaConstant.error,
-      background: Colors.white,
-      onBackground: NinjaConstant.primaryBlack,
-      onError: Colors.white,
-      onSurface: NinjaConstant.primaryBlack,
-      surface: Colors.white,
-    ),
 
     /// Floating Action Theme
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -146,7 +129,6 @@ class NinjaAppTheme {
     splashColor: Colors.white.withAlpha(100),
     indicatorColor: const Color(0xffeeeeee),
     highlightColor: const Color(0xffeeeeee),
-    errorColor: NinjaConstant.error,
 
     /// Input (Text-Field) Theme
     inputDecorationTheme: const InputDecorationTheme(
@@ -164,9 +146,24 @@ class NinjaAppTheme {
         borderSide: BorderSide(width: 1, color: NinjaConstant.grey200),
       ),
     ),
+    colorScheme: const ColorScheme(
+      brightness: Brightness.light,
+      primary: NinjaConstant.primary,
+      onPrimary: NinjaConstant.primaryBlack,
+      secondary: NinjaConstant.secondary,
+      onSecondary: Colors.white,
+      error: NinjaConstant.error,
+      background: Colors.white,
+      onBackground: NinjaConstant.primaryBlack,
+      onError: Colors.white,
+      onSurface: NinjaConstant.primaryBlack,
+      surface: Colors.white,
+    ).copyWith(background: Colors.white).copyWith(error: NinjaConstant.error),
   );
 
   static ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
+
     /// Brightness
     brightness: Brightness.dark,
 
@@ -175,7 +172,6 @@ class NinjaAppTheme {
 
     /// Scaffold and Background color
     scaffoldBackgroundColor: const Color(0xff161616),
-    backgroundColor: const Color(0xff161616),
     canvasColor: Colors.transparent,
 
     /// AppBar Theme
@@ -184,10 +180,6 @@ class NinjaAppTheme {
     /// Card Theme
     cardTheme: const CardTheme(color: Color(0xff222327)),
     cardColor: const Color(0xff222327),
-
-    /// Colorscheme
-    colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xff069DEF), brightness: Brightness.dark),
 
     /// Input (Text-Field) Theme
     inputDecorationTheme: const InputDecorationTheme(
@@ -282,8 +274,11 @@ class NinjaAppTheme {
     indicatorColor: Colors.white,
     disabledColor: const Color(0xffa3a3a3),
     highlightColor: Colors.white.withAlpha(28),
-    errorColor: Colors.orange,
     splashColor: Colors.white.withAlpha(56),
+    colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xff069DEF), brightness: Brightness.dark)
+        .copyWith(background: const Color(0xff161616))
+        .copyWith(error: Colors.orange),
   );
 
   static CupertinoThemeData cupertinoLightTheme = const CupertinoThemeData(

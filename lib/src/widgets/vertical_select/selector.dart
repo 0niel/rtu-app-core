@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:rtu_app_core/rtu_app_core.dart';
 import 'package:unicons/unicons.dart';
 
